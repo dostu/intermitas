@@ -69,19 +69,3 @@ App.nodes = {
   314: 3,
   315: 1
 };
-
-
-
-//   101: { size: 1, count: null, title: 'pradžia' },
-//   102: { size: 2, count: null, title: 'analizė ir įsikūnijimas' },
-//   113: { size: 1, count: null, title: 'problema' },
-//   103: { size: 3, count: null, title: 'mitas' },
-//   104: { size: 2, count: 100, title: 'komentarai lrytas.lt' },
-//   105: { size: 1, count: 57, title: 'komentarai Facebook' },
-//   106: { size: 1, count: 140, title: 'pasidalinimai' },
-//   107: { size: 1, count: 10, title: 'dirbtini pasidalinimai' },
-//   108: { size: 2, count: 5, title: 'dirbtini komentarai' },
-//   109: { size: 1, count: null, title: 'statistika' },
-//   110: { size: 1, count: null, title: 'analizė' },
-//   111: { size: 3, count: null, title: 'išvados' }
-// }

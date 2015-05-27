@@ -65,11 +65,11 @@ Path.prototype.update = function() {
   });
   this.linksContainer.removeAllChildren();
   var that = this;
+  var stroke = 0.8;
+  if ($('.main-page.open-page').length) stroke = 0.3; 
   this.nodes.forEach(function(node) {
     node.links.forEach(function(link) {
       var line = new createjs.Shape();
-      var stroke = 0.8;
-      if ($('.main-page.open-page').length) stroke = 0.3; 
       line.graphics.setStrokeStyle(stroke).beginStroke(that.color());
       line.graphics.moveTo(node.shape.x, node.shape.y).lineTo(link.shape.x, link.shape.y);
       that.linksContainer.addChild(line);

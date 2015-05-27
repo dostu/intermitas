@@ -2,7 +2,7 @@ App.dates = [
   {
     date: '2015 balandzio 28',
     activity: {
-      101: { title: 'analize ir isikunijimas', size: 1 },
+      101: { title: 'analizė ir įsikūnijimas', size: 1 },
       103: { title: 'mitas - straipsnis', size: 3, level: 1 },
       104: { title: 'komentarai portale lrytas.lt', size: 3, count: 100 },
       105: { title: 'komentarai facebook', size: 2, count: 57 },
@@ -10,11 +10,11 @@ App.dates = [
       107: { title: 'dirbtiniai komentarai', size: 2, count: 4 },
       108: { title: 'dirbtiniai pasidalinimai', size: 2, count: 10 },
       109: { title: 'statistika', size: 1 },
-      110: { title: 'analize', size: 1 },
-      111: { title: 'isvados', size: 2 },
+      110: { title: 'analizė', size: 1 },
+      111: { title: 'išvados', size: 2 },
       113: { title: 'problema', size: 1 },
 
-      302: { title: 'analize', size: 1 },
+      302: { title: 'analizė', size: 1 },
       303: { title: 'problema', size: 1 },
       305: { title: 'istorija', size: 2 },
       306: { title: 'produktas', size: 3 },
@@ -24,7 +24,7 @@ App.dates = [
       310: { title: 'komentarai portale lrytas.lt', size: 2, count: 84, level: 2 },
       311: { title: 'komentarai facebook', size: 2, count: 49, level: 1 },
       312: { title: 'pasidalinimai', size: 2, count: 113, level: 1 },
-      314: { title: 'susidomejimas preke', size: 3, level: 2 },
+      314: { title: 'susidomėjimas preke', size: 3, level: 2 },
     }
   }
 ];

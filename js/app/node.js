@@ -32,6 +32,7 @@ Node.prototype.number = function() {
 
 Node.prototype.draw = function() {
   this.shape.removeAllChildren();
+  clearTimeout(this.timeout);
 
   if (this.activity() && this.activity().level) {
     this.drawActiveCircle();
@@ -46,7 +47,7 @@ Node.prototype.drawActiveCircle = function() {
   if(this.activity().level == 2) {
     this.drawCircle();
     var that = this;
-    setTimeout(function() {
+    this.timeout = setTimeout(function() {
       that.drawCircle();
     }, 1000);
   } else {
@@ -57,16 +58,17 @@ Node.prototype.drawActiveCircle = function() {
 Node.prototype.drawCircle = function(wait) {
   var size = 6;
 
-  if (!wait) {
-    wait = 0;
-  }
+  if (!wait) wait = 0;
+
   var circle = new createjs.Shape();
   circle.graphics.beginRadialGradientFill(
     [createjs.Graphics.getRGB(0x333, 0), this.color()], [0, 1], 100, 100, size / 2, 100, 100, size)
     .drawCircle(100, 100, size);
   circle.regX = 100;
   circle.regY = 100;
-  createjs.Tween.get(circle, { loop: true }).wait(wait).to({ scaleX: 5, scaleY: 5, alpha: 0 }, 2000);
+  circle.alpha = 0.75;
+  var scale = 1 + this.size * 2;
+  createjs.Tween.get(circle, { loop: true }).wait(wait).to({ scaleX: scale, scaleY: scale, alpha: 0 }, 2000, createjs.Ease.cubicOut());
 
   this.shape.addChild(circle);
   this.shape.setChildIndex(circle, 0);

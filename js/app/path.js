@@ -36,15 +36,13 @@ Path.prototype.initializeNodes = function(nodePositions) {
 }
 
 Path.prototype.color = function() {
-  var color = 'white';
-
   switch(this.id) {
     case 2:
-      color = '#aaa';
-      break;
+      return App.colors.light_grey;
     case 3:
-      color = '#666';
-      break;
+      return App.colors.dark_grey;
+    default:
+      return App.colors.white; 
   }
 
   if (this.opened) color = App.colors.yellow; 
@@ -70,7 +68,8 @@ Path.prototype.update = function() {
   this.nodes.forEach(function(node) {
     node.links.forEach(function(link) {
       var line = new createjs.Shape();
-      var stroke = 1;
+      var stroke = 0.8;
+      if ($('.main-page.open-page').length) stroke = 0.3; 
       line.graphics.setStrokeStyle(stroke).beginStroke(that.color());
       line.graphics.moveTo(node.shape.x, node.shape.y).lineTo(link.shape.x, link.shape.y);
       that.linksContainer.addChild(line);

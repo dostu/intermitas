@@ -92,8 +92,8 @@ App.prototype.drawCircle = function(x, y, size) {
 
 App.colors = {
   yellow: '#ffdd15',
-  white: '#fff',
-  light_grey: '#999',
+  white: '#eee',
+  light_grey: '#aaa',
   dark_grey: '#666'
 }
 

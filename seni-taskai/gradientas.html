@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.2 (Mac)   -->
+<!-- By Mike Swanson (http://blog.mikeswanson.com/)             -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>gradientas</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      draw(ctx);
+    }
+
+    function draw(ctx) {
+
+      var alpha = ctx.globalAlpha;
+      var gradient;
+
+      // layer1/Path
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.60;
+      ctx.beginPath();
+      ctx.moveTo(40.3, 24.0);
+      ctx.bezierCurveTo(40.3, 33.0, 33.0, 40.3, 24.0, 40.3);
+      ctx.bezierCurveTo(15.0, 40.3, 7.7, 33.0, 7.7, 24.0);
+      ctx.bezierCurveTo(7.7, 15.0, 15.0, 7.7, 24.0, 7.7);
+      ctx.bezierCurveTo(33.0, 7.7, 40.3, 15.0, 40.3, 24.0);
+      ctx.closePath();
+      gradient = ctx.createRadialGradient(24.0, 24.0, 0.0, 24.0, 24.0, 16.3);
+      gradient.addColorStop(0.60, "rgba(50, 50, 50, 0.00)");
+      gradient.addColorStop(0.92, "rgba(152, 135, 35, 0.50)");
+      gradient.addColorStop(1.00, "rgb(255, 220, 20)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // layer1/Compound Path
+      ctx.beginPath();
+
+      // layer1/Compound Path/Path
+      ctx.moveTo(24.1, 0.0);
+      ctx.bezierCurveTo(10.8, 0.0, 0.0, 10.8, 0.0, 24.1);
+      ctx.bezierCurveTo(0.0, 37.4, 10.8, 48.2, 24.1, 48.2);
+      ctx.bezierCurveTo(37.4, 48.2, 48.2, 37.4, 48.2, 24.1);
+      ctx.bezierCurveTo(48.2, 10.8, 37.4, 0.0, 24.1, 0.0);
+      ctx.closePath();
+
+      // layer1/Compound Path/Path
+      ctx.moveTo(23.9, 40.3);
+      ctx.bezierCurveTo(14.9, 40.3, 7.6, 33.1, 7.6, 24.0);
+      ctx.bezierCurveTo(7.6, 15.1, 14.9, 7.8, 23.9, 7.8);
+      ctx.bezierCurveTo(32.9, 7.8, 40.2, 15.1, 40.2, 24.0);
+      ctx.bezierCurveTo(40.2, 33.1, 32.9, 40.3, 23.9, 40.3);
+      ctx.closePath();
+      gradient = ctx.createRadialGradient(24.1, 24.1, 0.0, 24.1, 24.1, 24.1);
+      gradient.addColorStop(0.60, "rgba(50, 50, 50, 0.00)");
+      gradient.addColorStop(0.87, "rgba(152, 135, 35, 0.50)");
+      gradient.addColorStop(1.00, "rgb(255, 220, 20)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="49" height="49"></canvas>
+ </body>
+</html>

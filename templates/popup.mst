@@ -1,0 +1,11 @@
+<div class="popup">
+  <div class="table">
+    <span class="popup-count">
+      66
+    </span>
+    <p class="popup-text">
+      komentarai portale lrytas.lt
+    </p>
+    <a href="#" class="open-page popup-button">plačiau</a>
+  </div>
+</div>

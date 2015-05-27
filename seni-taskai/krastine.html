@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.2 (Mac)   -->
+<!-- By Mike Swanson (http://blog.mikeswanson.com/)             -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>krastine</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      draw(ctx);
+    }
+
+    function draw(ctx) {
+
+      // layer1/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(665.5, 12.7);
+      ctx.bezierCurveTo(665.5, 19.8, 659.8, 25.5, 652.8, 25.5);
+      ctx.bezierCurveTo(645.7, 25.5, 640.0, 19.8, 640.0, 12.7);
+      ctx.bezierCurveTo(640.0, 5.7, 645.7, 0.0, 652.8, 0.0);
+      ctx.bezierCurveTo(659.8, 0.0, 665.5, 5.7, 665.5, 12.7);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(255, 220, 20)";
+      ctx.fill();
+
+      // layer1/Path
+      ctx.beginPath();
+      ctx.moveTo(25.5, 427.7);
+      ctx.bezierCurveTo(25.5, 434.8, 19.8, 440.5, 12.8, 440.5);
+      ctx.bezierCurveTo(5.7, 440.5, 0.0, 434.8, 0.0, 427.7);
+      ctx.bezierCurveTo(0.0, 420.7, 5.7, 415.0, 12.8, 415.0);
+      ctx.bezierCurveTo(19.8, 415.0, 25.5, 420.7, 25.5, 427.7);
+      ctx.closePath();
+      ctx.fill();
+
+      // layer1/Path
+      ctx.beginPath();
+      ctx.moveTo(237.6, 405.7);
+      ctx.lineTo(285.0, 259.7);
+      ctx.lineTo(469.9, 183.1);
+      ctx.lineTo(716.9, 173.3);
+      ctx.lineTo(937.2, 253.6);
+      ctx.lineTo(1105.5, 406.0);
+      ctx.lineTo(994.3, 563.9);
+      ctx.lineTo(676.8, 636.9);
+      ctx.lineTo(320.3, 565.1);
+      ctx.lineTo(237.6, 405.7);
+      ctx.closePath();
+      ctx.strokeStyle = "rgb(0, 24, 255)";
+      ctx.stroke();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1107" height="638"></canvas>
+ </body>
+</html>

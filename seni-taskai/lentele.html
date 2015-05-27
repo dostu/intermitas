@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.2 (Mac)   -->
+<!-- By Mike Swanson (http://blog.mikeswanson.com/)             -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>lentele</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      draw(ctx);
+    }
+
+    function draw(ctx) {
+
+      var alpha = ctx.globalAlpha;
+
+      // layer1/Group
+      ctx.save();
+
+      // layer1/Group/Path
+      ctx.save();
+      ctx.globalAlpha = alpha * 0.70;
+      ctx.beginPath();
+      ctx.moveTo(105.0, 109.0);
+      ctx.lineTo(1.0, 109.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(105.0, 0.0);
+      ctx.lineTo(105.0, 109.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(25, 25, 25)";
+      ctx.fill();
+
+      // layer1/Group/komentarai portale lrytaslt
+      ctx.globalAlpha = alpha * 1.00;
+      ctx.font = "Light 12.0px 'Brandon Grotesque'";
+      ctx.fillStyle = "rgb(255, 255, 255)";
+      ctx.fillText("komentarai ", 9.6, 51.1);
+      ctx.fillText("portale lrytas.lt", 9.6, 65.5);
+
+      // layer1/Group/66
+      ctx.font = "Bold 14.0px 'Brandon Grotesque'";
+      ctx.fillText("66", 14.6, 27.1);
+
+      // layer1/Group/Path
+      ctx.beginPath();
+      ctx.moveTo(35.5, 34.5);
+      ctx.lineTo(9.5, 34.5);
+      ctx.lineTo(9.5, 9.5);
+      ctx.lineTo(35.5, 9.5);
+      ctx.lineTo(35.5, 34.5);
+      ctx.closePath();
+      ctx.strokeStyle = "rgb(255, 255, 255)";
+      ctx.stroke();
+
+      // layer1/Group/Path
+      ctx.beginPath();
+      ctx.moveTo(64.5, 101.5);
+      ctx.lineTo(9.5, 101.5);
+      ctx.lineTo(9.5, 76.5);
+      ctx.lineTo(64.5, 76.5);
+      ctx.lineTo(64.5, 101.5);
+      ctx.closePath();
+      ctx.strokeStyle = "rgb(255, 220, 20)";
+      ctx.stroke();
+
+      // layer1/Group/Path
+      ctx.beginPath();
+      ctx.moveTo(0.5, 0.0);
+      ctx.lineTo(0.5, 124.0);
+      // This artwork uses an unsupported dash style
+      ctx.strokeStyle = "rgb(241, 241, 241)";
+      ctx.stroke();
+
+      // layer1/Group/plaiau
+      ctx.font = "Light 12.0px 'Brandon Grotesque'";
+      ctx.fillText("pla", 18.5, 93.0);
+      ctx.restore();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="105" height="124"></canvas>
+ </body>
+</html>

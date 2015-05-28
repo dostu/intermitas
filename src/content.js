@@ -2,7 +2,7 @@ var Content = function() {
   var that = this;
   document.addEventListener('openPage', function(event) {
     var node = event.detail.node;
-    that.open(node.number(), node.title(), node.count());
+    that.open(node.id, node.title(), node.count());
   });
 }
 

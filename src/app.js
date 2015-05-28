@@ -89,10 +89,10 @@ class App {
     var coords = node.globalCoords();
 
     createjs.Tween.get(this.container).to({ 
-      scaleX: 3,
-      scaleY: 3,
-      x: - coords.x * 2.5,
-      y: - coords.y * 2,
+      scaleX: 2,
+      scaleY: 2,
+      x: - coords.x * 1.75,
+      y: - coords.y,
     }, 500, createjs.Ease.getPowInOut(2))
   }
 

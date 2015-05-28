@@ -9,12 +9,14 @@ var Node = (function () {
     _classCallCheck(this, Node);
 
     this.id = path.id * 100 + id + 1;
-    if (this.id == 401) {
-      this.id = 'about';
-    }
     this.path = path;
     this.size = App.nodes[this.id] || 1;
     this.links = [];
+
+    if (this.id == 401) {
+      this.id = 'about';
+      this.size = 6;
+    }
 
     this.initializeContainer(path.container);
     this.initializeAnimations(positions);
@@ -46,6 +48,8 @@ var Node = (function () {
   }, {
     key: 'color',
     value: function color() {
+      if (this.id == 'about') return App.colors.yellow;
+
       return this.path.color();
     }
   }, {
@@ -55,16 +59,16 @@ var Node = (function () {
       clearTimeout(this.timeout);
 
       if (this.activity() && this.activity().level) {
-        this.drawActiveCircle();
+        this.drawActiveCircle(this.activity().level);
       }
 
-      if (this.id == 'about') {
-        this.drawStartingPoint();
-      } else {
-        var node = new createjs.Shape();
-        node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
-        this.container.addChild(node);
-      }
+      if (this.id == 'about') this.drawActiveCircle(2);
+
+      var node = new createjs.Shape();
+      node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+      this.container.addChild(node);
+
+      if (this.id == 'about') this.drawStartingPoint();
     }
   }, {
     key: 'x',
@@ -78,10 +82,10 @@ var Node = (function () {
     }
   }, {
     key: 'drawActiveCircle',
-    value: function drawActiveCircle() {
+    value: function drawActiveCircle(level) {
       var _this = this;
 
-      if (this.activity().level == 2) {
+      if (level == 2) {
         this.drawCircle();
         this.timeout = setTimeout(function () {
           return _this.drawCircle();
@@ -102,7 +106,7 @@ var Node = (function () {
       circle.regX = 100;
       circle.regY = 100;
       circle.alpha = 0.75;
-      var scale = 1 + this.size * 2;
+      var scale = 1 + Math.sqrt(this.size) * 3;
       createjs.Tween.get(circle, { loop: true }).wait(wait).to({ scaleX: scale, scaleY: scale, alpha: 0 }, 2000, createjs.Ease.cubicOut());
 
       this.container.addChild(circle);
@@ -111,17 +115,11 @@ var Node = (function () {
   }, {
     key: 'drawStartingPoint',
     value: function drawStartingPoint() {
-      this.container.removeAllChildren();
-
-      var circle = new createjs.Shape();
-      circle.graphics.beginFill(App.colors.yellow).drawCircle(0, 0, 20);
-      this.container.addChild(circle);
-
-      var text = new createjs.Text('apie', '12px Arial', App.colors.black);
+      var text = new createjs.Text('apie', '10px Open Sans', App.colors.black);
       text.set({
         textAlign: 'center'
       });
-      text.y = -7;
+      text.y = -8;
       this.container.addChild(text);
     }
   }, {

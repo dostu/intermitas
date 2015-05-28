@@ -46,17 +46,9 @@ var Path = (function () {
     }
   }, {
     key: 'color',
-    value: (function (_color) {
-      function color() {
-        return _color.apply(this, arguments);
-      }
+    value: function color() {
+      if (this.opened) return App.colors.yellow;
 
-      color.toString = function () {
-        return _color.toString();
-      };
-
-      return color;
-    })(function () {
       switch (this.id) {
         case 2:
           return App.colors.light_grey;
@@ -65,11 +57,7 @@ var Path = (function () {
         default:
           return App.colors.white;
       }
-
-      if (this.opened) color = App.colors.yellow;
-
-      return color;
-    })
+    }
   }, {
     key: 'initializeLinks',
     value: function initializeLinks(linkedNodes) {

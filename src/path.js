@@ -35,6 +35,8 @@ class Path {
   }
 
   color() {
+    if (this.opened) return App.colors.yellow; 
+
     switch(this.id) {
       case 2:
         return App.colors.light_grey;
@@ -43,10 +45,6 @@ class Path {
       default:
         return App.colors.white; 
     }
-
-    if (this.opened) color = App.colors.yellow; 
-
-    return color;
   }
 
   initializeLinks(linkedNodes) {

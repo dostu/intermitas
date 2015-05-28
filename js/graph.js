@@ -19,6 +19,9 @@ var Graph = (function () {
       this.container.regX = 620;
       this.container.regY = 400;
       container.addChild(this.container);
+
+      this.startingPoint = new createjs.Container();
+      this.container.addChild(this.startingPoint);
     }
   }, {
     key: "initializePaths",
@@ -40,7 +43,8 @@ var Graph = (function () {
       var _this = this;
 
       this.paths.forEach(function (path) {
-        return _this.container.addChild(path.container);
+        _this.container.addChild(path.container);
+        _this.container.setChildIndex(path.container, 0);
       });
     }
   }, {

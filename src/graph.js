@@ -9,6 +9,9 @@ class Graph {
     this.container.regX = 620;
     this.container.regY = 400;
     container.addChild(this.container);
+
+    this.startingPoint = new createjs.Container();
+    this.container.addChild(this.startingPoint);
   }
 
   initializePaths() {
@@ -22,7 +25,10 @@ class Graph {
   }
 
   draw() { 
-    this.paths.forEach((path) => this.container.addChild(path.container));
+    this.paths.forEach((path) => {
+      this.container.addChild(path.container);
+      this.container.setChildIndex(path.container, 0);
+    });
   }
 
   handleClick(x, y) {

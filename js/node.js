@@ -9,6 +9,9 @@ var Node = (function () {
     _classCallCheck(this, Node);
 
     this.id = path.id * 100 + id + 1;
+    if (this.id == 401) {
+      this.id = 'about';
+    }
     this.path = path;
     this.size = App.nodes[this.id] || 1;
     this.links = [];
@@ -55,9 +58,13 @@ var Node = (function () {
         this.drawActiveCircle();
       }
 
-      var node = new createjs.Shape();
-      node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
-      this.container.addChild(node);
+      if (this.id == 'about') {
+        this.drawStartingPoint();
+      } else {
+        var node = new createjs.Shape();
+        node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+        this.container.addChild(node);
+      }
     }
   }, {
     key: 'x',
@@ -102,6 +109,22 @@ var Node = (function () {
       this.container.setChildIndex(circle, 0);
     }
   }, {
+    key: 'drawStartingPoint',
+    value: function drawStartingPoint() {
+      this.container.removeAllChildren();
+
+      var circle = new createjs.Shape();
+      circle.graphics.beginFill(App.colors.yellow).drawCircle(0, 0, 20);
+      this.container.addChild(circle);
+
+      var text = new createjs.Text('apie', '12px Arial', App.colors.black);
+      text.set({
+        textAlign: 'center'
+      });
+      text.y = -7;
+      this.container.addChild(text);
+    }
+  }, {
     key: 'animate',
     value: function animate() {
       var points = [];
@@ -135,12 +158,20 @@ var Node = (function () {
   }, {
     key: 'title',
     value: function title() {
-      return this.activity().title;
+      if (this.id == 'about') {
+        return 'apie';
+      } else {
+        return this.activity().title;
+      }
     }
   }, {
     key: 'count',
     value: function count() {
-      return this.activity().count;
+      if (this.id == 'about') {
+        return '';
+      } else {
+        return this.activity().count;
+      }
     }
   }, {
     key: 'openPage',
@@ -164,7 +195,12 @@ var Node = (function () {
       this.path.open();
       this.draw();
 
-      if (this.activity()) {
+      if (this.id == 'about') {
+        this.openPage();
+        return;
+      }
+
+      if (this.activity() || this.id == 'about') {
         var popupTemplate = $('#popup').html();
         var popup = Mustache.render(popupTemplate, {
           id: this.id,

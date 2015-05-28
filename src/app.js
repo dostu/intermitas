@@ -10,7 +10,7 @@ class App {
   }
 
   initializeContainer() {
-    createjs.Ticker.setFPS(40);
+    createjs.Ticker.setFPS(60);
     createjs.MotionGuidePlugin.install();
     createjs.Ticker.addEventListener('tick', () => this.update());
 
@@ -62,13 +62,6 @@ class App {
     let logo = new createjs.Container();
     logo.x = 100;
     logo.y = 100;
-
-    let text = new createjs.Bitmap('images/logo.png');
-    text.scaleX = 0.5;
-    text.scaleY = 0.5;
-    text.regX = 46 * 2;
-    text.regY = 30 * 2;
-    logo.addChild(text);
 
     setTimeout(() => logo.addChild(this.drawCircle(0, 0, 15)), 1);
     setTimeout(() => logo.addChild(this.drawCircle(0, 0, 15)), 1000);
@@ -135,5 +128,6 @@ App.colors = {
   yellow: '#ffdd15',
   white: '#eee',
   light_grey: '#aaa',
-  dark_grey: '#666'
+  dark_grey: '#666',
+  black: '#000'
 }

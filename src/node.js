@@ -1,6 +1,9 @@
 class Node {
   constructor(positions, path, id) {
     this.id = path.id * 100 + id + 1;
+    if (this.id == 401) {
+      this.id = 'about';
+    }
     this.path = path;
     this.size = App.nodes[this.id] || 1;
     this.links = [];
@@ -41,9 +44,13 @@ class Node {
       this.drawActiveCircle();
     }
 
-    var node = new createjs.Shape();
-    node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
-    this.container.addChild(node);
+    if (this.id == 'about') {
+      this.drawStartingPoint();
+    } else {
+      var node = new createjs.Shape();
+      node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+      this.container.addChild(node);
+    }
   }
 
   x() {
@@ -82,6 +89,21 @@ class Node {
     this.container.setChildIndex(circle, 0);
   }
 
+  drawStartingPoint() {
+    this.container.removeAllChildren();
+
+    let circle = new createjs.Shape();
+    circle.graphics.beginFill(App.colors.yellow).drawCircle(0, 0, 20);
+    this.container.addChild(circle);
+
+    let text = new createjs.Text('apie', "12px Arial", App.colors.black);
+    text.set({
+      textAlign: 'center'
+    });
+    text.y = -7;
+    this.container.addChild(text);
+  }
+
   animate() {
     var points = []
     this.animation.forEach((point) => points.push(point.x, point.y));
@@ -112,11 +134,19 @@ class Node {
   }
 
   title() {
-    return this.activity().title;
+    if (this.id == 'about') {
+      return 'apie';
+    } else {
+      return this.activity().title;
+    }
   }
 
   count() {
-    return this.activity().count;
+    if (this.id == 'about') {
+      return '';
+    } else {
+      return this.activity().count;
+    }
   }
 
   openPage() {
@@ -135,7 +165,12 @@ class Node {
     this.path.open();
     this.draw();
 
-    if (this.activity()) {
+    if (this.id == 'about') {
+      this.openPage();
+      return;
+    }
+
+    if (this.activity() || this.id == 'about') {
       var popupTemplate = $('#popup').html();
       var popup = Mustache.render(popupTemplate, { 
         id: this.id,

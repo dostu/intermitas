@@ -26,7 +26,7 @@ var App = (function () {
     value: function initializeContainer() {
       var _this2 = this;
 
-      createjs.Ticker.setFPS(40);
+      createjs.Ticker.setFPS(60);
       createjs.MotionGuidePlugin.install();
       createjs.Ticker.addEventListener('tick', function () {
         return _this2.update();
@@ -89,13 +89,6 @@ var App = (function () {
       var logo = new createjs.Container();
       logo.x = 100;
       logo.y = 100;
-
-      var text = new createjs.Bitmap('images/logo.png');
-      text.scaleX = 0.5;
-      text.scaleY = 0.5;
-      text.regX = 46 * 2;
-      text.regY = 30 * 2;
-      logo.addChild(text);
 
       setTimeout(function () {
         return logo.addChild(_this3.drawCircle(0, 0, 15));
@@ -170,5 +163,6 @@ App.colors = {
   yellow: '#ffdd15',
   white: '#eee',
   light_grey: '#aaa',
-  dark_grey: '#666'
+  dark_grey: '#666',
+  black: '#000'
 };

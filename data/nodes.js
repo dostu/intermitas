@@ -28,6 +28,8 @@ App.dates = {
     },
     tabs: [
       { title: 'pasidalinimai', content: 'Šiuo metu kyla pasidalinimų skaičius facebook.com' },
+      { title: 'komentarai facebook', content: 'Šiuo metu kyla komentarų skaičius facebook.com' },
+      { title: 'susidomėjimas preke', content: 'Šiuo metu kyla susidomėjimas preke skelbiu.lt' },
       { title: 'komentarai lrytas.lt', content: 'Šiuo metu kyla komentarų skaičius lrytas.lt' }
     ]
   },
@@ -94,3 +96,19 @@ App.nodes = {
   314: 3,
   315: 1
 };
+
+App.backgroundSizes = {
+  0: 3,
+  1: 2,
+  2: 3,
+  3: 3,
+  4: 1,
+  5: 3,
+  6: 2,
+  7: 3,
+  8: 3,
+  9: 1,
+  10: 2,
+  11: 1,
+  12: 1
+}

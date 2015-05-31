@@ -37,7 +37,13 @@ var Path = (function () {
           positions.push(nodePositions[j][i]);
         }
 
-        var node = new Node(positions, this, i);
+        var node = undefined;
+
+        if (this.id == 4 && i == 0) {
+          node = new MainNode(positions, this, i);
+        } else {
+          node = new Node(positions, this, i);
+        }
 
         nodes.push(node);
       }
@@ -54,6 +60,8 @@ var Path = (function () {
           return App.colors.light_grey;
         case 3:
           return App.colors.dark_grey;
+        case 4:
+          return App.colors.yellow;
         default:
           return App.colors.white;
       }

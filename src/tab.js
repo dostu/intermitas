@@ -14,8 +14,7 @@ class Tab {
 
   bindClick() {
     $('.tab-text', this.tab).on('click', () => {
-      this.close();
-      this.open();
+      this.toggle();
     });
 
     $(document).click((event) => {
@@ -23,6 +22,14 @@ class Tab {
         this.close();
       }
     });
+  }
+
+  toggle() {
+    let open = $(this.tab).hasClass('open');
+    this.close();
+    if (!open) {
+      this.open();
+    }
   }
 
   open() {

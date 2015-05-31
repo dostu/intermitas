@@ -83,12 +83,34 @@ var App = (function () {
   }, {
     key: 'drawBackground',
     value: function drawBackground() {
+      this.backgroundContainer = new createjs.Container();
       var background = new createjs.Shape();
       var x = this.width() / 2;
       var y = this.height() / 2;
       background.graphics.beginRadialGradientFill(['#161616', '#333'], [0, 1], x, y, 0, x, y, 600).drawRect(0, 0, this.width(), this.height());
-      this.container.addChild(background);
-      this.container.setChildIndex(background, 0);
+      this.backgroundContainer.addChild(background);
+      this.container.addChild(this.backgroundContainer);
+      this.container.setChildIndex(this.backgroundContainer, 0);
+      this.drawBackgroundPoints();
+    }
+  }, {
+    key: 'drawBackgroundPoints',
+    value: function drawBackgroundPoints() {
+      var nodePositions = App.backgroundPoints;
+      var nodes = [];
+
+      for (var i = 0; i < nodePositions[0].length; i++) {
+        var positions = [];
+
+        for (var j = 0; j < nodePositions.length; j++) {
+          positions.push(nodePositions[j][i]);
+        }
+
+        var node = new BackgroundNode(positions, i);
+        this.backgroundContainer.addChild(node.container);
+
+        nodes.push(node);
+      }
     }
   }, {
     key: 'drawLogo',
@@ -182,5 +204,6 @@ App.colors = {
   white: '#eee',
   light_grey: '#aaa',
   dark_grey: '#666',
-  black: '#000'
+  black: '#000',
+  backgroundNodes: '#111'
 };

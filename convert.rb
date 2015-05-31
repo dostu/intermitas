@@ -3,7 +3,7 @@
 require 'json'
 require 'neatjson'
 
-FRAMES = 8
+FRAMES = 1
 layer = '1'
 
 paths = {}
@@ -13,7 +13,7 @@ FRAMES.times do |frame|
   points = {}
   nodes = {}
 
-  File.readlines("#{ frame + 1 }.html").each_cons(2) do |lines|
+  File.readlines("#{ frame + 2 }.html").each_cons(2) do |lines|
     layer = $1 if lines.first =~ /layer(\d)/
     groups[layer] ||= []
     groups[layer] << [lines.first, lines.last] if lines.last =~ /lineTo/

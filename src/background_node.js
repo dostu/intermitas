@@ -1,11 +1,9 @@
-class Node {
-  constructor(positions, path, id) {
-    this.id = path.id * 100 + id + 1;
-    this.path = path;
-    this.size = App.nodes[this.id] || 1;
-    this.links = [];
+class BackgroundNode {
+  constructor(positions, id) {
+    this.id = id;
+    this.size = App.backgroundSizes[this.id];
 
-    this.initializeContainer(path.container);
+    this.initializeContainer();
     this.initializeAnimations(positions);
 
     this.draw();
@@ -16,7 +14,6 @@ class Node {
 
   initializeContainer(container) {
     this.container = new createjs.Container();
-    container.addChild(this.container);
   }
 
   initializeAnimations(positions) {
@@ -30,7 +27,7 @@ class Node {
   }
 
   color() {
-    return this.path.color();
+    return App.colors.backgroundNodes;
   }
 
   draw() {
@@ -42,12 +39,20 @@ class Node {
     }
 
     var node = new createjs.Shape();
-    if (this.activity()) {
-      node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+    if (this.size < 3) {
+      node.graphics.beginFill(this.color()).drawCircle(0, 0, 2 + 2 * this.size);
     } else {
-      node.graphics.setStrokeStyle(1).beginStroke(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+      node.graphics.setStrokeStyle(1).beginStroke(this.color()).drawCircle(0, 0, 15);
     }
+
     this.container.addChild(node);
+
+    // let text = new createjs.Text(this.id, "10px Open Sans", App.colors.black);
+    // text.set({
+    //   textAlign: 'center'
+    // });
+    // text.y = -8;
+    // this.container.addChild(text);
   }
 
   x() {
@@ -108,7 +113,7 @@ class Node {
 
     
     createjs.Tween.get(this.container, { loop: true, useTicks: true })
-      .to({ guide: { path: convertedPoints } }, 5000);
+      .to({ guide: { path: convertedPoints } }, 3000);
   }
 
   activity() {
@@ -132,29 +137,5 @@ class Node {
     if (this.opened) {
       $('body .popup').css({ left: this.globalCoords().x, top: this.globalCoords().y });
     }
-  }
-
-  open() {
-    this.opened = true;
-    this.path.open();
-    this.draw();
-
-    if (this.activity()) {
-      var popupTemplate = $('#popup').html();
-      var popup = Mustache.render(popupTemplate, { 
-        id: this.id,
-        count: this.count(),
-        title: this.title()
-      });
-
-      $('body').append(popup);
-      $('body .popup-button').on('click', () => this.openPage());
-    }
-  }
-
-  close() {
-    $('body .popup').remove();
-    this.opened = false;
-    this.draw();
   }
 }

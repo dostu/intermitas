@@ -27,8 +27,7 @@ var Tab = (function () {
       var _this = this;
 
       $('.tab-text', this.tab).on('click', function () {
-        _this.close();
-        _this.open();
+        _this.toggle();
       });
 
       $(document).click(function (event) {
@@ -36,6 +35,15 @@ var Tab = (function () {
           _this.close();
         }
       });
+    }
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      var open = $(this.tab).hasClass('open');
+      this.close();
+      if (!open) {
+        this.open();
+      }
     }
   }, {
     key: 'open',

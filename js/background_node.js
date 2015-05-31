@@ -4,16 +4,14 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-var Node = (function () {
-  function Node(positions, path, id) {
-    _classCallCheck(this, Node);
+var BackgroundNode = (function () {
+  function BackgroundNode(positions, id) {
+    _classCallCheck(this, BackgroundNode);
 
-    this.id = path.id * 100 + id + 1;
-    this.path = path;
-    this.size = App.nodes[this.id] || 1;
-    this.links = [];
+    this.id = id;
+    this.size = App.backgroundSizes[this.id];
 
-    this.initializeContainer(path.container);
+    this.initializeContainer();
     this.initializeAnimations(positions);
 
     this.draw();
@@ -22,11 +20,10 @@ var Node = (function () {
     this.animate();
   }
 
-  _createClass(Node, [{
+  _createClass(BackgroundNode, [{
     key: 'initializeContainer',
     value: function initializeContainer(container) {
       this.container = new createjs.Container();
-      container.addChild(this.container);
     }
   }, {
     key: 'initializeAnimations',
@@ -43,7 +40,7 @@ var Node = (function () {
   }, {
     key: 'color',
     value: function color() {
-      return this.path.color();
+      return App.colors.backgroundNodes;
     }
   }, {
     key: 'draw',
@@ -56,12 +53,20 @@ var Node = (function () {
       }
 
       var node = new createjs.Shape();
-      if (this.activity()) {
-        node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+      if (this.size < 3) {
+        node.graphics.beginFill(this.color()).drawCircle(0, 0, 2 + 2 * this.size);
       } else {
-        node.graphics.setStrokeStyle(1).beginStroke(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+        node.graphics.setStrokeStyle(1).beginStroke(this.color()).drawCircle(0, 0, 15);
       }
+
       this.container.addChild(node);
+
+      // let text = new createjs.Text(this.id, "10px Open Sans", App.colors.black);
+      // text.set({
+      //   textAlign: 'center'
+      // });
+      // text.y = -8;
+      // this.container.addChild(text);
     }
   }, {
     key: 'x',
@@ -129,7 +134,7 @@ var Node = (function () {
         convertedPoints.push(xc, yc, nextPoint[0], nextPoint[1]);
       }
 
-      createjs.Tween.get(this.container, { loop: true, useTicks: true }).to({ guide: { path: convertedPoints } }, 5000);
+      createjs.Tween.get(this.container, { loop: true, useTicks: true }).to({ guide: { path: convertedPoints } }, 3000);
     }
   }, {
     key: 'activity',
@@ -159,37 +164,7 @@ var Node = (function () {
         $('body .popup').css({ left: this.globalCoords().x, top: this.globalCoords().y });
       }
     }
-  }, {
-    key: 'open',
-    value: function open() {
-      var _this2 = this;
-
-      this.opened = true;
-      this.path.open();
-      this.draw();
-
-      if (this.activity()) {
-        var popupTemplate = $('#popup').html();
-        var popup = Mustache.render(popupTemplate, {
-          id: this.id,
-          count: this.count(),
-          title: this.title()
-        });
-
-        $('body').append(popup);
-        $('body .popup-button').on('click', function () {
-          return _this2.openPage();
-        });
-      }
-    }
-  }, {
-    key: 'close',
-    value: function close() {
-      $('body .popup').remove();
-      this.opened = false;
-      this.draw();
-    }
   }]);
 
-  return Node;
+  return BackgroundNode;
 })();

@@ -20,13 +20,19 @@ class Path {
     let nodes = [];
 
     for (var i = 0; i < nodePositions[0].length; i++) {
-      var positions = [];
+      let positions = [];
 
       for (var j = 0; j < nodePositions.length; j++) {
         positions.push(nodePositions[j][i]);
       } 
 
-      var node = new Node(positions, this, i);
+      let node;
+
+      if (this.id == 4 && i == 0) {
+        node = new MainNode(positions, this, i);
+      } else {
+        node = new Node(positions, this, i);
+      }
 
       nodes.push(node);
     }
@@ -42,6 +48,8 @@ class Path {
         return App.colors.light_grey;
       case 3:
         return App.colors.dark_grey;
+      case 4: 
+        return App.colors.yellow;
       default:
         return App.colors.white; 
     }

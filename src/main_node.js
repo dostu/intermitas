@@ -20,6 +20,10 @@ class MainNode extends Node { constructor(positions, path, id) {
     this.container.addChild(text);
   }
 
+  activeColor() {
+    return this.color();
+  }
+
   activity() {
     return true;
   }

@@ -67,6 +67,10 @@ class Node {
     }
   }
 
+  activeColor() {
+    return App.colors.white;
+  }
+
   drawCircle(wait) {
     var size = 6;
 
@@ -74,7 +78,7 @@ class Node {
 
     var circle = new createjs.Shape();
     circle.graphics.beginRadialGradientFill(
-      [createjs.Graphics.getRGB(0x333, 0), this.color()], [0, 1], 100, 100, size / 2, 100, 100, size)
+      [createjs.Graphics.getRGB(0x333, 0), this.activeColor()], [0, 1], 100, 100, size / 2, 100, 100, size)
       .drawCircle(100, 100, size);
     circle.regX = 100;
     circle.regY = 100;
@@ -137,7 +141,6 @@ class Node {
   open() {
     this.opened = true;
     this.path.open();
-    this.draw();
 
     if (this.activity()) {
       var popupTemplate = $('#popup').html();

@@ -14,7 +14,6 @@ var Path = (function () {
 
     this.initializeNodes(path.nodes);
     this.initializeLinks(path.links);
-
     this.draw();
   }
 
@@ -107,7 +106,7 @@ var Path = (function () {
         node.links.forEach(function (link) {
           var line = new createjs.Shape();
           line.graphics.setStrokeStyle(stroke).beginStroke(_this2.color());
-          line.graphics.moveTo(node.container.x, node.container.y).lineTo(link.container.x, link.container.y);
+          line.graphics.moveTo(node.x(), node.y()).lineTo(link.x(), link.y());
           _this2.linksContainer.addChild(line);
         });
       });
@@ -121,6 +120,8 @@ var Path = (function () {
   }, {
     key: 'close',
     value: function close() {
+      if (!this.opened) return;
+
       this.opened = false;
       this.nodes.forEach(function (node) {
         node.close();

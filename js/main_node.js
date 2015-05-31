@@ -38,6 +38,11 @@ var MainNode = (function (_Node) {
       this.container.addChild(text);
     }
   }, {
+    key: 'activeColor',
+    value: function activeColor() {
+      return this.color();
+    }
+  }, {
     key: 'activity',
     value: function activity() {
       return true;

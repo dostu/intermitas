@@ -1,22 +1,21 @@
 class Graph {
-  constructor(container) {
-    this.initializeContainer(container);
+  constructor() {
+    this.initializeContainer();
     this.initializePaths();
   }
 
-  initializeContainer(container) {
+  initializeContainer() {
     this.container = new createjs.Container();
     this.container.regX = 620;
     this.container.regY = 400;
-    container.addChild(this.container);
-
-    this.startingPoint = new createjs.Container();
-    this.container.addChild(this.startingPoint);
   }
 
   initializePaths() {
-    this.paths = App.paths.map((path, index) => {
-      return new Path(path, index);
+    this.paths = App.paths.map((pathData, index) => {
+      let path = new Path(pathData, index);
+      this.container.addChild(path.container);
+      this.container.setChildIndex(path.container, 0);
+      return path;
     });
   }
 
@@ -25,10 +24,7 @@ class Graph {
   }
 
   draw() { 
-    this.paths.forEach((path) => {
-      this.container.addChild(path.container);
-      this.container.setChildIndex(path.container, 0);
-    });
+    this.paths.forEach((path) => path.draw());
   }
 
   handleClick(x, y) {
@@ -41,7 +37,7 @@ class Graph {
   }
 
   findClosestNode(x, y) {
-    var minDiff = 20;
+    var minDiff = 40;
     var targetNode = null;
 
     this.paths.forEach((path) => {

@@ -88,6 +88,11 @@ var Node = (function () {
       }
     }
   }, {
+    key: 'activeColor',
+    value: function activeColor() {
+      return App.colors.white;
+    }
+  }, {
     key: 'drawCircle',
     value: function drawCircle(wait) {
       var size = 6;
@@ -95,7 +100,7 @@ var Node = (function () {
       if (!wait) wait = 0;
 
       var circle = new createjs.Shape();
-      circle.graphics.beginRadialGradientFill([createjs.Graphics.getRGB(819, 0), this.color()], [0, 1], 100, 100, size / 2, 100, 100, size).drawCircle(100, 100, size);
+      circle.graphics.beginRadialGradientFill([createjs.Graphics.getRGB(819, 0), this.activeColor()], [0, 1], 100, 100, size / 2, 100, 100, size).drawCircle(100, 100, size);
       circle.regX = 100;
       circle.regY = 100;
       circle.alpha = 0.75;
@@ -166,7 +171,6 @@ var Node = (function () {
 
       this.opened = true;
       this.path.open();
-      this.draw();
 
       if (this.activity()) {
         var popupTemplate = $('#popup').html();

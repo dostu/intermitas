@@ -5,29 +5,30 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Graph = (function () {
-  function Graph(container) {
+  function Graph() {
     _classCallCheck(this, Graph);
 
-    this.initializeContainer(container);
+    this.initializeContainer();
     this.initializePaths();
   }
 
   _createClass(Graph, [{
     key: "initializeContainer",
-    value: function initializeContainer(container) {
+    value: function initializeContainer() {
       this.container = new createjs.Container();
       this.container.regX = 620;
       this.container.regY = 400;
-      container.addChild(this.container);
-
-      this.startingPoint = new createjs.Container();
-      this.container.addChild(this.startingPoint);
     }
   }, {
     key: "initializePaths",
     value: function initializePaths() {
-      this.paths = App.paths.map(function (path, index) {
-        return new Path(path, index);
+      var _this = this;
+
+      this.paths = App.paths.map(function (pathData, index) {
+        var path = new Path(pathData, index);
+        _this.container.addChild(path.container);
+        _this.container.setChildIndex(path.container, 0);
+        return path;
       });
     }
   }, {
@@ -40,11 +41,8 @@ var Graph = (function () {
   }, {
     key: "draw",
     value: function draw() {
-      var _this = this;
-
       this.paths.forEach(function (path) {
-        _this.container.addChild(path.container);
-        _this.container.setChildIndex(path.container, 0);
+        return path.draw();
       });
     }
   }, {
@@ -64,7 +62,7 @@ var Graph = (function () {
     value: function findClosestNode(x, y) {
       var _this2 = this;
 
-      var minDiff = 20;
+      var minDiff = 40;
       var targetNode = null;
 
       this.paths.forEach(function (path) {

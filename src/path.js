@@ -6,7 +6,6 @@ class Path {
 
     this.initializeNodes(path.nodes);
     this.initializeLinks(path.links);
-
     this.draw();
   }
 
@@ -83,7 +82,7 @@ class Path {
       node.links.forEach((link) => {
         let line = new createjs.Shape();
         line.graphics.setStrokeStyle(stroke).beginStroke(this.color());
-        line.graphics.moveTo(node.container.x, node.container.y).lineTo(link.container.x, link.container.y);
+        line.graphics.moveTo(node.x(), node.y()).lineTo(link.x(), link.y());
         this.linksContainer.addChild(line);
       });
     });
@@ -95,6 +94,8 @@ class Path {
   }
 
   close() {
+    if (!this.opened) return;
+
     this.opened = false;
     this.nodes.forEach(function(node) {
       node.close();

@@ -20,7 +20,7 @@ var App = (function () {
     value: function initializeContainer() {
       var _this = this;
 
-      createjs.Ticker.setFPS(60);
+      createjs.Ticker.setFPS(30);
       createjs.MotionGuidePlugin.install();
       createjs.Ticker.addEventListener('tick', function () {
         return _this.update();
@@ -31,7 +31,12 @@ var App = (function () {
         return _this.handleClick(event);
       }, false);
 
-      this.graph = new Graph(this.container);
+      this.background = new Background();
+      this.container.addChild(this.background.container);
+      this.container.setChildIndex(this.background, 0);
+
+      this.graph = new Graph();
+      this.container.addChild(this.graph.container);
     }
   }, {
     key: 'initializeWidgets',
@@ -76,71 +81,8 @@ var App = (function () {
   }, {
     key: 'draw',
     value: function draw() {
-      this.drawBackground();
-      this.drawLogo();
+      this.background.draw(this.width(), this.height());
       this.graph.draw();
-    }
-  }, {
-    key: 'drawBackground',
-    value: function drawBackground() {
-      this.backgroundContainer = new createjs.Container();
-      var background = new createjs.Shape();
-      var x = this.width() / 2;
-      var y = this.height() / 2;
-      background.graphics.beginRadialGradientFill(['#161616', '#333'], [0, 1], x, y, 0, x, y, 600).drawRect(0, 0, this.width(), this.height());
-      this.backgroundContainer.addChild(background);
-      this.container.addChild(this.backgroundContainer);
-      this.container.setChildIndex(this.backgroundContainer, 0);
-      this.drawBackgroundPoints();
-    }
-  }, {
-    key: 'drawBackgroundPoints',
-    value: function drawBackgroundPoints() {
-      var nodePositions = App.backgroundPoints;
-      var nodes = [];
-
-      for (var i = 0; i < nodePositions[0].length; i++) {
-        var positions = [];
-
-        for (var j = 0; j < nodePositions.length; j++) {
-          positions.push(nodePositions[j][i]);
-        }
-
-        var node = new BackgroundNode(positions, i);
-        this.backgroundContainer.addChild(node.container);
-
-        nodes.push(node);
-      }
-    }
-  }, {
-    key: 'drawLogo',
-    value: function drawLogo() {
-      var _this3 = this;
-
-      var logo = new createjs.Container();
-      logo.x = 100;
-      logo.y = 100;
-
-      setTimeout(function () {
-        return logo.addChild(_this3.drawCircle(0, 0, 15));
-      }, 1);
-      setTimeout(function () {
-        return logo.addChild(_this3.drawCircle(0, 0, 15));
-      }, 1000);
-
-      this.container.addChild(logo);
-      this.container.setChildIndex(logo, 1);
-    }
-  }, {
-    key: 'drawCircle',
-    value: function drawCircle(x, y, size) {
-      var circle = new createjs.Shape();
-      circle.graphics.beginRadialGradientFill([createjs.Graphics.getRGB(819, 0), App.colors.yellow], [0, 1], 100, 100, size / 2, 100, 100, size).drawCircle(100, 100, size);
-      circle.regX = 100;
-      circle.regY = 100;
-      circle.alpha = 0.7;
-      createjs.Tween.get(circle, { loop: true }).to({ scaleX: 5, scaleY: 5, alpha: 0 }, 2000);
-      return circle;
     }
   }, {
     key: 'openPage',
@@ -185,11 +127,12 @@ var App = (function () {
     value: function changeDate(date) {
       App.activity = App.dates[date].activity;
       App.date = App.dates[date];
-      this.initializeTabs();
+      this.changeTabs();
     }
   }, {
-    key: 'initializeTabs',
-    value: function initializeTabs() {
+    key: 'changeTabs',
+    value: function changeTabs() {
+      $('.tabs').empty();
       App.date.tabs.forEach(function (tab) {
         return new Tab(tab);
       });
@@ -205,5 +148,10 @@ App.colors = {
   light_grey: '#aaa',
   dark_grey: '#666',
   black: '#000',
-  backgroundNodes: '#111'
+  backgroundNodes: '#111',
+  background: {
+    outer: '#161616',
+    inner: '#333',
+    nodes: '#111'
+  }
 };

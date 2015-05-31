@@ -1,6 +1,6 @@
 <html>
 <head>
-  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700' rel='stylesheet' type='text/css'> -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700' rel='stylesheet' type='text/css'>
   <link href='vendor/custom_scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet' type='text/css'>
   <link href='reset.css' rel='stylesheet' type='text/css'>
   <link href='style.css' rel='stylesheet' type='text/css'>
@@ -16,11 +16,25 @@
     <div class="container"></div>
 
     <div class="footer">
-      <span class="date">2015 BALANDŽIO 28 D.</span>
+      <div class="date-picker">
+        <div class="tooltip">
+          Noredami pamatyti Intermitas eiga, 
+          <span class="emphasis">pakeiskite data.</span>
+        </div>
 
-      <div class="footer-tab active"><div class="arrow-up"></div>komentarai portale lrytas.lt</div>
-      <div class="footer-tab"><div class="arrow-down"></div>komentarai facebook</div>
+        <ul class="date-select">
+          <li><a href="#" data-date="2015-04-19">2015 balandžio 19 d.</a></li>
+          <li><a href="#" data-date="2015-04-30">2015 balandžio 30 d.</a></li>
+          <li><a href="#" data-date="2015-05-27">2015 gegužės 27 d.</a></li>
+        </ul>
+
+        <a href="#" class="date"></a>
+      </div>
+
+      <div class="tabs"> </div>
     </div>
+
+
 
   <script src="vendor/mustache.js"></script>
   <script src="vendor/jquery/jquery-2.1.4.js"></script>
@@ -29,6 +43,8 @@
   <script src="vendor/lodash.js"></script>
   <script src="vendor/custom_scrollbar/jquery.mCustomScrollbar.js"></script>
 
+  <script src="js/tab.js"></script>
+  <script src="js/date_picker.js"></script>
   <script src="js/graph.js"></script>
   <script src="js/content.js"></script>
   <script src="js/app.js"></script>
@@ -72,6 +88,26 @@
       </div>
     </div>
   </script>
+
+  <script id="tab" type="x-tmpl-mustache">
+    <div class="tab">
+      <div class="tab-popup">
+        {{content}}
+        <span class="emphasis">
+          Plačiau – spauskite pulsuojančius taškus.
+        </span>
+      </div>
+
+      <a href="#" class="tab-text">
+        {{title}}
+      </a>
+    </div>
+  </script>
+
+
   </div>
+  <script type='text/javascript' id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.7.6.js'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
 </body>
 </html>

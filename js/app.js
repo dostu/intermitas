@@ -6,16 +6,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var App = (function () {
   function App() {
-    var _this = this;
-
     _classCallCheck(this, App);
 
+    this.initializeWidgets();
     this.initializeContainer();
-    this.content = new Content();
-
-    document.addEventListener('openPage', function (event) {
-      return _this.openPage();
-    });
 
     this.resize();
     this.draw();
@@ -24,20 +18,35 @@ var App = (function () {
   _createClass(App, [{
     key: 'initializeContainer',
     value: function initializeContainer() {
-      var _this2 = this;
+      var _this = this;
 
       createjs.Ticker.setFPS(60);
       createjs.MotionGuidePlugin.install();
       createjs.Ticker.addEventListener('tick', function () {
-        return _this2.update();
+        return _this.update();
       });
 
       this.container = new createjs.Stage('canvas');
       this.container.addEventListener('stagemouseup', function (event) {
-        return _this2.handleClick(event);
+        return _this.handleClick(event);
       }, false);
 
       this.graph = new Graph(this.container);
+    }
+  }, {
+    key: 'initializeWidgets',
+    value: function initializeWidgets() {
+      var _this2 = this;
+
+      document.addEventListener('openPage', function (event) {
+        return _this2.openPage();
+      });
+      this.content = new Content();
+
+      document.addEventListener('change-date', function (event) {
+        return _this2.changeDate(event.detail.date);
+      });
+      this.datePicker = new DatePicker();
     }
   }, {
     key: 'resize',
@@ -151,8 +160,17 @@ var App = (function () {
     }
   }, {
     key: 'changeDate',
-    value: function changeDate() {
-      this.info = App.dates[0].activity;
+    value: function changeDate(date) {
+      App.activity = App.dates[date].activity;
+      App.date = App.dates[date];
+      this.initializeTabs();
+    }
+  }, {
+    key: 'initializeTabs',
+    value: function initializeTabs() {
+      App.date.tabs.forEach(function (tab) {
+        return new Tab(tab);
+      });
     }
   }]);
 

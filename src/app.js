@@ -1,9 +1,7 @@
 class App {
   constructor() {
+    this.initializeWidgets();
     this.initializeContainer();
-    this.content = new Content();
-
-    document.addEventListener('openPage', (event) => this.openPage());
 
     this.resize();
     this.draw();
@@ -18,6 +16,14 @@ class App {
     this.container.addEventListener('stagemouseup', (event) => this.handleClick(event), false); 
 
     this.graph = new Graph(this.container);
+  }
+
+  initializeWidgets() {
+    document.addEventListener('openPage', (event) => this.openPage());
+    this.content = new Content();
+
+    document.addEventListener('change-date', (event) => this.changeDate(event.detail.date));
+    this.datePicker = new DatePicker();
   }
 
   resize() {
@@ -119,8 +125,14 @@ class App {
     }
   }
 
-  changeDate() {
-    this.info = App.dates[0].activity;
+  changeDate(date) {
+    App.activity = App.dates[date].activity;
+    App.date = App.dates[date];
+    this.initializeTabs();
+  }
+
+  initializeTabs() {
+    App.date.tabs.forEach((tab) => new Tab(tab));
   }
 }
 

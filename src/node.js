@@ -51,7 +51,11 @@ class Node {
     if (this.id == 'about') this.drawActiveCircle(2);
 
     var node = new createjs.Shape();
-    node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+    if (this.activity() || this.id == 'about') {
+      node.graphics.beginFill(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+    } else {
+      node.graphics.setStrokeStyle(1).beginStroke(this.color()).drawCircle(0, 0, 3 + 2 * this.size);
+    }
     this.container.addChild(node);
 
     if (this.id == 'about') this.drawStartingPoint();
@@ -128,7 +132,7 @@ class Node {
   }
 
   activity() {
-    return App.dates[0].activity[this.id];
+    return App.activity[this.id];
   }
 
   title() {

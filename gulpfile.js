@@ -1,6 +1,6 @@
 var gulp = require("gulp");
 var babel = require("gulp-babel");
-var livereload = require("gulp-livereload");
+var browserSync = require('browser-sync').create();
 
 var paths = {
   babel: 'src/*.js'
@@ -15,11 +15,17 @@ gulp.task('babel', function () {
   return gulp.src(paths.babel)
     .pipe(babel())
     .on('error', swallowError)
-    .pipe(gulp.dest("js"))
-    .pipe(livereload());
+    .pipe(gulp.dest("js"));
 });
 
+gulp.task('js-watch', ['babel'], function() { browserSync.reload() });
+
 gulp.task('watch', function() {
-  livereload.listen();
-  gulp.watch(paths.babel, ['babel'])
-})
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }, 
+    notify: false
+  });
+  gulp.watch(paths.babel, ['js-watch']);
+});

@@ -55,7 +55,7 @@ var Graph = (function () {
       });
 
       var node = this.findClosestNode(x, y);
-      if (node) node.open();
+      if (node && node.activity()) node.open();
 
       return node;
     }

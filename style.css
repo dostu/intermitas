@@ -22,7 +22,7 @@ a {
 }
 
 .open-page .logo {
-  display: none
+  opacity: 0;
 }
 
 .logo {
@@ -30,6 +30,8 @@ a {
   top: 70px;
   left: 53px;
   width: 96px;
+  transition: all 0.5s;
+  opacity: 1;
 }
 
 * {
@@ -95,11 +97,12 @@ h2 {
 
 .container { 
   z-index: 9999;
-  width: 750px;
+  min-width: 750px;
+  width: 70%;
   position: absolute;
   top: 0;
   bottom: 24px;
-  right: -760px;
+  right: -80%;
   background-color: #242424;
   overflow: auto;
   transition: all 0.5s ease-out;

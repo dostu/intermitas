@@ -42,21 +42,32 @@
   <script src="vendor/curve_calc.js"></script>
   <script src="vendor/lodash.js"></script>
   <script src="vendor/custom_scrollbar/jquery.mCustomScrollbar.js"></script>
+  <script src="vendor/Stats.js"></script>
 
-  <script src="js/background.js"></script>
-  <script src="js/tab.js"></script>
-  <script src="js/date_picker.js"></script>
-  <script src="js/graph.js"></script>
-  <script src="js/content.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/Background.js"></script>
+  <script src="js/Tab.js"></script>
+  <script src="js/DatePicker.js"></script>
+  <script src="js/Graph.js"></script>
+  <script src="js/Content.js"></script>
+  <script src="js/App.js"></script>
   <script src="data/paths.js"></script>
   <script src="data/nodes.js"></script>
-  <script src="js/node.js"></script>
-  <script src="js/main_node.js"></script>
-  <script src="js/background_node.js"></script>
-  <script src="js/path.js"></script>
+  <script src="js/Node.js"></script>
+  <script src="js/MainNode.js"></script>
+  <script src="js/BackgroundNode.js"></script>
+  <script src="js/Path.js"></script>
 
   <script>
+    // var stats = new Stats();
+    // stats.setMode(0); // 0: fps, 1: ms
+    //
+    // // align top-left
+    // stats.domElement.style.position = 'absolute';
+    // stats.domElement.style.left = '0px';
+    // stats.domElement.style.top = '0px';
+    //
+    // document.body.appendChild( stats.domElement );
+
     $(document).ready(function() {
       new App();
     });

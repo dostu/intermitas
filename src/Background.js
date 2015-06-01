@@ -6,8 +6,12 @@ class Background {
   draw(width, height) {
     this.container.removeAllChildren();
     this.drawBackground(width, height);
-    this.drawPoints();
+    this.drawPoints(width, height);
     this.drawLogo();
+  }
+
+  resize(width, height) {
+    this.draw(width, height);
   }
 
   drawBackground(width, height) {
@@ -21,11 +25,19 @@ class Background {
       [0, 1], x, y, 0, x, y, radius
     );
     background.graphics.drawRect(0, 0, width, height);
+    background.cache(0, 0, width, height);
 
     this.container.addChild(background);
   }
 
-  drawPoints() {
+  drawPoints(width, height) {
+    this.pointsContainer = new createjs.Container();
+    this.container.addChild(this.pointsContainer);
+    this.pointsContainer.x = width / 2;
+    this.pointsContainer.y = height / 2;
+    this.pointsContainer.regX = 640;
+    this.pointsContainer.regY = 400;
+
     let nodePositions = App.backgroundPoints;
     let nodes = [];
 
@@ -37,7 +49,7 @@ class Background {
       } 
 
       var node = new BackgroundNode(positions, i);
-      this.container.addChild(node.container);
+      this.pointsContainer.addChild(node.container);
 
       nodes.push(node);
     }

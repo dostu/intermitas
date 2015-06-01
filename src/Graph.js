@@ -56,4 +56,9 @@ class Graph {
 
     return targetNode;
   }
+
+  resize(width, height) {
+    this.container.x = width / 2;
+    this.container.y = height / 2;
+  }
 }

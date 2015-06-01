@@ -78,12 +78,13 @@ class Path {
     let stroke = 0.8;
     if ($('.main-page.open-page').length) stroke = 0.3; 
 
+    let line = new createjs.Shape();
+    line.graphics.setStrokeStyle(stroke).beginStroke(this.color());
+    this.linksContainer.addChild(line);
+
     this.nodes.forEach((node) => {
       node.links.forEach((link) => {
-        let line = new createjs.Shape();
-        line.graphics.setStrokeStyle(stroke).beginStroke(this.color());
         line.graphics.moveTo(node.x(), node.y()).lineTo(link.x(), link.y());
-        this.linksContainer.addChild(line);
       });
     });
   }

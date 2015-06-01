@@ -1,17 +1,24 @@
 class App {
   constructor() {
-    this.initializeWidgets();
-    this.initializeContainer();
-
+    this.initialize()
     this.resize();
     this.draw();
   }
 
-  initializeContainer() {
-    createjs.Ticker.setFPS(30);
-    createjs.MotionGuidePlugin.install();
-    createjs.Ticker.addEventListener('tick', () => this.update());
+  initialize() {
+    this.initializeApp();
+    this.initializeWidgets();
+    this.initializeContainer();
+  }
 
+  initializeApp() {
+    createjs.MotionGuidePlugin.install();
+    createjs.Ticker.setFPS(50);
+    createjs.Ticker.addEventListener('tick', () => this.update());
+    $(window).on('resize', () => this.resize());
+  }
+
+  initializeContainer() {
     this.container = new createjs.Stage('canvas');
     this.container.addEventListener('stagemouseup', (event) => this.handleClick(event), false); 
 
@@ -35,13 +42,16 @@ class App {
     this.container.canvas.width = window.innerWidth;
     this.container.canvas.height = window.innerHeight;
 
-    this.graph.container.x = window.innerWidth / 2;
-    this.graph.container.y = window.innerHeight / 2;
+    this.background.resize(this.width(), this.height());
+
+    this.graph.resize(this.width(), this.height());
   }
 
   update() {
-    this.graph.update();
+    // stats.begin();
     this.container.update();
+    this.graph.update();
+    // stats.end();
   }
 
   width() {

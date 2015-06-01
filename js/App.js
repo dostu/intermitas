@@ -8,27 +8,40 @@ var App = (function () {
   function App() {
     _classCallCheck(this, App);
 
-    this.initializeWidgets();
-    this.initializeContainer();
-
+    this.initialize();
     this.resize();
     this.draw();
   }
 
   _createClass(App, [{
-    key: 'initializeContainer',
-    value: function initializeContainer() {
+    key: 'initialize',
+    value: function initialize() {
+      this.initializeApp();
+      this.initializeWidgets();
+      this.initializeContainer();
+    }
+  }, {
+    key: 'initializeApp',
+    value: function initializeApp() {
       var _this = this;
 
-      createjs.Ticker.setFPS(30);
       createjs.MotionGuidePlugin.install();
+      createjs.Ticker.setFPS(50);
       createjs.Ticker.addEventListener('tick', function () {
         return _this.update();
       });
+      $(window).on('resize', function () {
+        return _this.resize();
+      });
+    }
+  }, {
+    key: 'initializeContainer',
+    value: function initializeContainer() {
+      var _this2 = this;
 
       this.container = new createjs.Stage('canvas');
       this.container.addEventListener('stagemouseup', function (event) {
-        return _this.handleClick(event);
+        return _this2.handleClick(event);
       }, false);
 
       this.background = new Background();
@@ -41,15 +54,15 @@ var App = (function () {
   }, {
     key: 'initializeWidgets',
     value: function initializeWidgets() {
-      var _this2 = this;
+      var _this3 = this;
 
       document.addEventListener('openPage', function (event) {
-        return _this2.openPage();
+        return _this3.openPage();
       });
       this.content = new Content();
 
       document.addEventListener('change-date', function (event) {
-        return _this2.changeDate(event.detail.date);
+        return _this3.changeDate(event.detail.date);
       });
       this.datePicker = new DatePicker();
     }
@@ -59,14 +72,17 @@ var App = (function () {
       this.container.canvas.width = window.innerWidth;
       this.container.canvas.height = window.innerHeight;
 
-      this.graph.container.x = window.innerWidth / 2;
-      this.graph.container.y = window.innerHeight / 2;
+      this.background.resize(this.width(), this.height());
+
+      this.graph.resize(this.width(), this.height());
     }
   }, {
     key: 'update',
     value: function update() {
-      this.graph.update();
+      // stats.begin();
       this.container.update();
+      this.graph.update();
+      // stats.end();
     }
   }, {
     key: 'width',

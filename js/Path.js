@@ -95,19 +95,18 @@ var Path = (function () {
   }, {
     key: 'drawLinks',
     value: function drawLinks() {
-      var _this2 = this;
-
       this.linksContainer.removeAllChildren();
 
       var stroke = 0.8;
       if ($('.main-page.open-page').length) stroke = 0.3;
 
+      var line = new createjs.Shape();
+      line.graphics.setStrokeStyle(stroke).beginStroke(this.color());
+      this.linksContainer.addChild(line);
+
       this.nodes.forEach(function (node) {
         node.links.forEach(function (link) {
-          var line = new createjs.Shape();
-          line.graphics.setStrokeStyle(stroke).beginStroke(_this2.color());
           line.graphics.moveTo(node.x(), node.y()).lineTo(link.x(), link.y());
-          _this2.linksContainer.addChild(line);
         });
       });
     }

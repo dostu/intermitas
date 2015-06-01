@@ -81,6 +81,12 @@ var Graph = (function () {
 
       return targetNode;
     }
+  }, {
+    key: "resize",
+    value: function resize(width, height) {
+      this.container.x = width / 2;
+      this.container.y = height / 2;
+    }
   }]);
 
   return Graph;

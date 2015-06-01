@@ -8,13 +8,19 @@ class Graph {
     this.container = new createjs.Container();
     this.container.regX = 620;
     this.container.regY = 400;
+    this.container.scaleX = 0.95;
+    this.container.scaleY = 0.95;
   }
 
   initializePaths() {
     this.paths = App.paths.map((pathData, index) => {
       let path = new Path(pathData, index);
       this.container.addChild(path.container);
-      this.container.setChildIndex(path.container, 0);
+      if (path.id == 4) {
+        this.container.setChildIndex(path.container, 3);
+      } else {
+        this.container.setChildIndex(path.container, 0);
+      }
       return path;
     });
   }
@@ -37,11 +43,13 @@ class Graph {
   }
 
   findClosestNode(x, y) {
-    var minDiff = 40;
+    var minDiff = 30;
     var targetNode = null;
 
     this.paths.forEach((path) => {
       path.nodes.forEach((node) => {
+        if (!node.activity()) return;
+
         var coords = this.container.localToGlobal(node.x(), node.y());
         var diffX = Math.abs(coords.x - x);
         var diffY = Math.abs(coords.y - y);

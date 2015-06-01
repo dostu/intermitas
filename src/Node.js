@@ -2,7 +2,9 @@ class Node {
   constructor(positions, path, id) {
     this.id = path.id * 100 + id + 1;
     this.path = path;
-    this.size = App.nodes[this.id] || 1;
+    this.size = App.nodes[this.id] && App.nodes[this.id].size || 1;
+    this.title = App.nodes[this.id] && App.nodes[this.id].title || '';
+    this.general = App.nodes[this.id] && App.nodes[this.id].general || false;
     this.links = [];
 
     this.initializeContainer(path.container);
@@ -12,6 +14,8 @@ class Node {
     this.container.x = positions[0][0];
     this.container.y = positions[0][1];
     this.animate();
+
+    this.preload();
   }
 
   initializeContainer(container) {
@@ -30,15 +34,19 @@ class Node {
   }
 
   color() {
-    return this.path.color();
+    if (this.general) {
+      return App.colors.yellow; 
+    } else {
+      return this.path.color();
+    }
   }
 
   draw() {
     this.container.removeAllChildren();
     clearTimeout(this.timeout);
 
-    if (this.activity() && this.activity().level) {
-      this.drawActiveCircle(this.activity().level);
+    if (this.activity() && this.activity().activity > 0) {
+      this.drawActiveCircle(this.activity().activity);
     }
 
     var node = new createjs.Shape();
@@ -68,7 +76,11 @@ class Node {
   }
 
   activeColor() {
-    return App.colors.white;
+    if (this.path.opened) {
+      return App.colors.yellow;
+    } else {
+      return App.colors.white;
+    }
   }
 
   drawCircle(wait) {
@@ -119,10 +131,6 @@ class Node {
     return App.activity[this.id];
   }
 
-  title() {
-    return this.activity().title;
-  }
-
   count() {
     return this.activity().count;
   }
@@ -147,10 +155,12 @@ class Node {
       var popup = Mustache.render(popupTemplate, { 
         id: this.id,
         count: this.count(),
-        title: this.title()
+        title: this.title
       });
 
-      $('body').append(popup);
+      let $popup = $(popup);
+      $('body').append($popup);
+      $popup.fadeIn(300);
       $('body .popup-button').on('click', () => this.openPage());
     }
   }
@@ -159,5 +169,9 @@ class Node {
     $('body .popup').remove();
     this.opened = false;
     this.draw();
+  }
+
+  preload() {
+    $('.preloaded-pages').append($(`<img id="page-${this.id}"/>`).attr("src", `pages/${this.id}.png`));
   }
 }

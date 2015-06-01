@@ -5,7 +5,9 @@
   <link href='reset.css' rel='stylesheet' type='text/css'>
   <link href='style.css' rel='stylesheet' type='text/css'>
   <meta charset="utf-8" />
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <title>INTERMITAS</title>
 </head>
 <body class="main-page">
@@ -13,20 +15,18 @@
     <img src="images/logo.png" class="logo">
     <canvas id="canvas"></canvas>
 
+    <div class="main-node">apie</div>
+
     <div class="container"></div>
 
     <div class="footer">
       <div class="date-picker">
         <div class="tooltip">
-          Noredami pamatyti Intermitas eiga, 
-          <span class="emphasis">pakeiskite data.</span>
+          Norėdami pamatyti Intermitas eiga, 
+          <span class="emphasis">pakeiskite datą.</span>
         </div>
 
-        <ul class="date-select">
-          <li><a href="#" data-date="2015-04-19">2015 balandžio 19 d.</a></li>
-          <li><a href="#" data-date="2015-04-30">2015 balandžio 30 d.</a></li>
-          <li><a href="#" data-date="2015-05-27">2015 gegužės 27 d.</a></li>
-        </ul>
+        <ul class="date-select"></ul>
 
         <a href="#" class="date"></a>
       </div>
@@ -42,7 +42,6 @@
   <script src="vendor/curve_calc.js"></script>
   <script src="vendor/lodash.js"></script>
   <script src="vendor/custom_scrollbar/jquery.mCustomScrollbar.js"></script>
-  <script src="vendor/Stats.js"></script>
 
   <script src="js/Background.js"></script>
   <script src="js/Tab.js"></script>
@@ -58,15 +57,7 @@
   <script src="js/Path.js"></script>
 
   <script>
-    // var stats = new Stats();
-    // stats.setMode(0); // 0: fps, 1: ms
-    //
-    // // align top-left
-    // stats.domElement.style.position = 'absolute';
-    // stats.domElement.style.left = '0px';
-    // stats.domElement.style.top = '0px';
-    //
-    // document.body.appendChild( stats.domElement );
+    $(document).bind('touchmove', false);
 
     $(document).ready(function() {
       new App();
@@ -80,9 +71,7 @@
 
     <h2 class="page-title">{{title}}</h2>
 
-    <div class="content">
-      <img class="page-content" src="pages/{{id}}.png">
-    </div>
+    <div class="content"></div>
 
     <div class="mask"></div>
   </script>
@@ -105,23 +94,21 @@
 
   <script id="tab" type="x-tmpl-mustache">
     <div class="tab">
+      <a href="#" class="tab-text">
+        {{title}}
+      </a>
+
       <div class="tab-popup">
         {{content}}
         <span class="emphasis">
           Plačiau – spauskite pulsuojančius taškus.
         </span>
       </div>
-
-      <a href="#" class="tab-text">
-        {{title}}
-      </a>
     </div>
   </script>
 
-
   </div>
-  <script type='text/javascript' id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.7.6.js'><\/script>".replace("HOST", location.hostname));
-    //]]></script>
+
+  <div class="preloaded-pages"></div>
 </body>
 </html>

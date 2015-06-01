@@ -18,6 +18,8 @@ var Graph = (function () {
       this.container = new createjs.Container();
       this.container.regX = 620;
       this.container.regY = 400;
+      this.container.scaleX = 0.95;
+      this.container.scaleY = 0.95;
     }
   }, {
     key: "initializePaths",
@@ -27,7 +29,11 @@ var Graph = (function () {
       this.paths = App.paths.map(function (pathData, index) {
         var path = new Path(pathData, index);
         _this.container.addChild(path.container);
-        _this.container.setChildIndex(path.container, 0);
+        if (path.id == 4) {
+          _this.container.setChildIndex(path.container, 3);
+        } else {
+          _this.container.setChildIndex(path.container, 0);
+        }
         return path;
       });
     }
@@ -62,11 +68,13 @@ var Graph = (function () {
     value: function findClosestNode(x, y) {
       var _this2 = this;
 
-      var minDiff = 40;
+      var minDiff = 30;
       var targetNode = null;
 
       this.paths.forEach(function (path) {
         path.nodes.forEach(function (node) {
+          if (!node.activity()) return;
+
           var coords = _this2.container.localToGlobal(node.x(), node.y());
           var diffX = Math.abs(coords.x - x);
           var diffY = Math.abs(coords.y - y);

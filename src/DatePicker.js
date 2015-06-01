@@ -1,6 +1,7 @@
 class DatePicker {
   constructor() {
     this.datePicker = $('.date-picker');
+    this.initializeDates();
     this.bindDateClick();
     this.bindClick();
     this.bindDateSelect();
@@ -8,8 +9,27 @@ class DatePicker {
     this.showTooltip();
   }
 
+  initializeDates() {
+    let dates = [
+      ['2015-04-17', '2015 balandžio 17 d.'],
+      ['2015-04-30', '2015 balandžio 30 d.'],
+      ['2015-05-27', '2015 gegužės 27 d.'],
+    ];
+
+    let date = new Date();
+    let today = `2015 birželio ${date.getDay()} d.`;
+    dates.push(['today', today]);
+
+    dates.forEach((date) => this.addDate(date[0], date[1]));
+  }
+
+  addDate(date, title) {
+    $('.date-select').append(`<li><a href="#" data-date="${date}">${title}</a></li>`);
+  }
+
   bindDateClick() {
     $('.date', this.datePicker).on('click', () => {
+      $('.tooltip').remove();
       this.datePicker.toggleClass('open-select');
     });
   }

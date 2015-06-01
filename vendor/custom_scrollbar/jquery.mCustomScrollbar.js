@@ -1289,6 +1289,7 @@ and dependencies (minified).
 					var limitX=mCSB_dragger[1].parent().width()-mCSB_dragger[1].width(),
 						preventX=((dragX-x)>0 && (x-dragX)>-(limitX*d.scrollRatio.x) && (touchIntent[2]*2<touchIntent[3] || o.axis==="yx"));
 				}
+        e.preventDefault();
 				if(prevent || preventX){e.preventDefault(); touchDrag=1;}else{docDrag=1;} /* prevent native document scrolling */
 				amount=o.axis==="yx" ? [(dragY-y),(dragX-x)] : o.axis==="x" ? [null,(dragX-x)] : [(dragY-y),null];
 				mCSB_container[0].idleTimer=250;

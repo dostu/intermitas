@@ -26,7 +26,7 @@ var App = (function () {
       var _this = this;
 
       createjs.MotionGuidePlugin.install();
-      createjs.Ticker.setFPS(50);
+      createjs.Ticker.setFPS(30);
       createjs.Ticker.addEventListener('tick', function () {
         return _this.update();
       });
@@ -79,10 +79,8 @@ var App = (function () {
   }, {
     key: 'update',
     value: function update() {
-      // stats.begin();
       this.container.update();
       this.graph.update();
-      // stats.end();
     }
   }, {
     key: 'width',
@@ -144,6 +142,7 @@ var App = (function () {
       App.activity = App.dates[date].activity;
       App.date = App.dates[date];
       this.changeTabs();
+      this.draw();
     }
   }, {
     key: 'changeTabs',

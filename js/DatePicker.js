@@ -9,6 +9,7 @@ var DatePicker = (function () {
     _classCallCheck(this, DatePicker);
 
     this.datePicker = $('.date-picker');
+    this.initializeDates();
     this.bindDateClick();
     this.bindClick();
     this.bindDateSelect();
@@ -17,33 +18,54 @@ var DatePicker = (function () {
   }
 
   _createClass(DatePicker, [{
-    key: 'bindDateClick',
-    value: function bindDateClick() {
+    key: 'initializeDates',
+    value: function initializeDates() {
       var _this = this;
 
+      var dates = [['2015-04-17', '2015 balandžio 17 d.'], ['2015-04-30', '2015 balandžio 30 d.'], ['2015-05-27', '2015 gegužės 27 d.']];
+
+      var date = new Date();
+      var today = '2015 birželio ' + date.getDay() + ' d.';
+      dates.push(['today', today]);
+
+      dates.forEach(function (date) {
+        return _this.addDate(date[0], date[1]);
+      });
+    }
+  }, {
+    key: 'addDate',
+    value: function addDate(date, title) {
+      $('.date-select').append('<li><a href="#" data-date="' + date + '">' + title + '</a></li>');
+    }
+  }, {
+    key: 'bindDateClick',
+    value: function bindDateClick() {
+      var _this2 = this;
+
       $('.date', this.datePicker).on('click', function () {
-        _this.datePicker.toggleClass('open-select');
+        $('.tooltip').remove();
+        _this2.datePicker.toggleClass('open-select');
       });
     }
   }, {
     key: 'bindClick',
     value: function bindClick() {
-      var _this2 = this;
+      var _this3 = this;
 
       $(document).click(function (event) {
         if (!$(event.target).closest('.date-picker').length) {
-          _this2.close();
+          _this3.close();
         }
       });
     }
   }, {
     key: 'bindDateSelect',
     value: function bindDateSelect() {
-      var _this3 = this;
+      var _this4 = this;
 
       $('.date-select a').on('click', function (event) {
         var date = $(event.target).data('date');
-        _this3.changeDate(date);
+        _this4.changeDate(date);
       });
     }
   }, {

@@ -13,7 +13,7 @@ class App {
 
   initializeApp() {
     createjs.MotionGuidePlugin.install();
-    createjs.Ticker.setFPS(50);
+    createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', () => this.update());
     $(window).on('resize', () => this.resize());
   }
@@ -48,10 +48,8 @@ class App {
   }
 
   update() {
-    // stats.begin();
     this.container.update();
     this.graph.update();
-    // stats.end();
   }
 
   width() {
@@ -108,6 +106,7 @@ class App {
     App.activity = App.dates[date].activity;
     App.date = App.dates[date];
     this.changeTabs();
+    this.draw();
   }
 
   changeTabs() {

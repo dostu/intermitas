@@ -10,7 +10,9 @@ var Node = (function () {
 
     this.id = path.id * 100 + id + 1;
     this.path = path;
-    this.size = App.nodes[this.id] || 1;
+    this.size = App.nodes[this.id] && App.nodes[this.id].size || 1;
+    this.title = App.nodes[this.id] && App.nodes[this.id].title || '';
+    this.general = App.nodes[this.id] && App.nodes[this.id].general || false;
     this.links = [];
 
     this.initializeContainer(path.container);
@@ -20,6 +22,8 @@ var Node = (function () {
     this.container.x = positions[0][0];
     this.container.y = positions[0][1];
     this.animate();
+
+    this.preload();
   }
 
   _createClass(Node, [{
@@ -43,7 +47,11 @@ var Node = (function () {
   }, {
     key: 'color',
     value: function color() {
-      return this.path.color();
+      if (this.general) {
+        return App.colors.yellow;
+      } else {
+        return this.path.color();
+      }
     }
   }, {
     key: 'draw',
@@ -51,8 +59,8 @@ var Node = (function () {
       this.container.removeAllChildren();
       clearTimeout(this.timeout);
 
-      if (this.activity() && this.activity().level) {
-        this.drawActiveCircle(this.activity().level);
+      if (this.activity() && this.activity().activity > 0) {
+        this.drawActiveCircle(this.activity().activity);
       }
 
       var node = new createjs.Shape();
@@ -90,7 +98,11 @@ var Node = (function () {
   }, {
     key: 'activeColor',
     value: function activeColor() {
-      return App.colors.white;
+      if (this.path.opened) {
+        return App.colors.yellow;
+      } else {
+        return App.colors.white;
+      }
     }
   }, {
     key: 'drawCircle',
@@ -142,11 +154,6 @@ var Node = (function () {
       return App.activity[this.id];
     }
   }, {
-    key: 'title',
-    value: function title() {
-      return this.activity().title;
-    }
-  }, {
     key: 'count',
     value: function count() {
       return this.activity().count;
@@ -177,10 +184,12 @@ var Node = (function () {
         var popup = Mustache.render(popupTemplate, {
           id: this.id,
           count: this.count(),
-          title: this.title()
+          title: this.title
         });
 
-        $('body').append(popup);
+        var $popup = $(popup);
+        $('body').append($popup);
+        $popup.fadeIn(300);
         $('body .popup-button').on('click', function () {
           return _this2.openPage();
         });
@@ -192,6 +201,11 @@ var Node = (function () {
       $('body .popup').remove();
       this.opened = false;
       this.draw();
+    }
+  }, {
+    key: 'preload',
+    value: function preload() {
+      $('.preloaded-pages').append($('<img id="page-' + this.id + '"/>').attr('src', 'pages/' + this.id + '.png'));
     }
   }]);
 

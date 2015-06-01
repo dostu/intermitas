@@ -3,12 +3,13 @@ body {
   background-color: #000;
   font-family: 'Open Sans', sans-serif;
   color: #fff;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
+  /* -webkit-backface-visibility: hidden; */
+  /* -webkit-transform: translateZ(0); */
+  /* -webkit-font-smoothing: subpixel-antialiased; */
   transition: background-image 0.5s ease;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 a {
@@ -45,7 +46,7 @@ h2 {
 }
 
 .open-page .popup {
-  display: none;
+  display: none !important; 
 }
 
 .popup {
@@ -54,6 +55,7 @@ h2 {
   border-left: 1px dashed #fff;
   position: absolute;
   margin-top: -135px;
+  display: none;
 }
 
 .popup .table {
@@ -93,11 +95,11 @@ h2 {
 
 .container { 
   z-index: 9999;
-  width: 60%;
+  width: 750px;
   position: absolute;
   top: 0;
   bottom: 24px;
-  right: -80%;
+  right: -760px;
   background-color: #242424;
   overflow: auto;
   transition: all 0.5s ease-out;
@@ -118,12 +120,7 @@ h2 {
   top: 100px;
   bottom: 0;
   left: 65px;
-}
-
-.mCSB_inside {
-  /* -webkit-box-shadow: inset 0px -71px 52px -37px rgba(0,0,0,0.42); */
-  /* -moz-box-shadow: inset 0px -71px 52px -37px rgba(0,0,0,0.42); */
-  /* box-shadow: inset 0px -71px 52px -37px rgba(0,0,0,0.42); */
+  overflow-y: auto;
 }
 
 .page-count {
@@ -156,7 +153,7 @@ h2 {
 
 .mask {
   position: absolute;
-  top: 100px;
+  height: 30px;
   bottom: 0;
   left: 73px;
   right: 0;
@@ -181,7 +178,8 @@ h2 {
 }
 
 .date-picker.open-select .date-select {
-  display: block;
+  bottom: 25px;
+  opacity: 1;
 }
 
 .date-select {
@@ -192,7 +190,9 @@ h2 {
   font-size: 14px;
   padding-top: 10px;
   padding-bottom: 10px;
-  display: none;
+  transition: all 0.2s;
+  bottom: -150px;
+  opacity: 0;
 }
 
 .date-select a {
@@ -214,6 +214,10 @@ h2 {
   margin-left: 20px;
   text-decoration: none;
   text-transform: uppercase;
+  display: block;
+  z-index: 1;
+  position: relative;
+  background-color: #000;
 }
 
 .tooltip {
@@ -267,38 +271,35 @@ h2 {
 }
 
 .tab {
-  position: relative;
-  background-color: #555;
-  height: 25px;
   display: inline-block;
-  width: 200px;
-  font-size: 12px;
-  text-align: center;
-  color: #fff;
+  width: 180px;
+  position: relative;
 }
 
-.tab.open .tab-popup {
-  display: block;
-}
-
-.tab:nth-child(odd) {
+.tabs .tab:nth-of-type(odd) .tab-text {
   background-color: #ffdd15;
 }
 
-.tab:nth-child(odd) a {
+.tabs .tab:nth-of-type(odd) .tab-text {
   color: #000;
+}
+
+.tab.open .tab-popup {
+  bottom: 25px;
+  opacity: 1;
 }
 
 .tab-popup {
   font-size: 14px;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  bottom: 25px;
+  bottom: -150px;
   font-style: italic;
   padding: 20px;
   line-height: 1.3;
   text-align: left;
-  display: none;
+  opacity: 0;
+  transition: all 0.2s;
 }
 
 .tab-popup .emphasis {
@@ -310,6 +311,12 @@ h2 {
 
 .tab-text {
   display: block;
+  z-index: 1;
+  position: relative;
+  background-color: #555;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
 }
 
 .tab-text:before {
@@ -323,7 +330,7 @@ h2 {
 
   position: absolute;
   top: 9px;
-  left: 20px;
+  left: 15px;
 }
 
 .arrow-down {
@@ -337,4 +344,19 @@ h2 {
   position: absolute;
   top: 10px;
   left: 10px;
+}
+
+.main-node {
+  position: absolute;
+  color: #000;
+  font-size: 11;
+  margin-top: -16px;
+  margin-left: -11px;
+  text-align: center;
+  line-height: 30px;
+  pointer-events: none;
+}
+
+.preloaded-pages {
+  display: none;
 }

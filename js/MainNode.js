@@ -13,9 +13,8 @@ var MainNode = (function (_Node) {
     _classCallCheck(this, MainNode);
 
     _get(Object.getPrototypeOf(MainNode.prototype), 'constructor', this).call(this, positions, path, id);
-
-    this.id = 'about';
     this.size = 6;
+    this.title = 'apie';
   }
 
   _inherits(MainNode, _Node);
@@ -26,16 +25,15 @@ var MainNode = (function (_Node) {
       return App.colors.yellow;
     }
   }, {
+    key: 'update',
+    value: function update() {
+      $('.main-node').css({ left: this.globalCoords().x, top: this.globalCoords().y });
+    }
+  }, {
     key: 'draw',
     value: function draw() {
       _get(Object.getPrototypeOf(MainNode.prototype), 'draw', this).call(this);
       this.drawActiveCircle(2);
-      var text = new createjs.Text('apie', '10px Open Sans', App.colors.black);
-      text.set({
-        textAlign: 'center'
-      });
-      text.y = -8;
-      this.container.addChild(text);
     }
   }, {
     key: 'activeColor',
@@ -46,11 +44,6 @@ var MainNode = (function (_Node) {
     key: 'activity',
     value: function activity() {
       return true;
-    }
-  }, {
-    key: 'title',
-    value: function title() {
-      return 'apie';
     }
   }, {
     key: 'count',

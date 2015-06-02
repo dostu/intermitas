@@ -1,8 +1,33 @@
 class App {
   constructor() {
-    this.initialize()
+    this.bindVideo();
+    this.initialize();
     this.resize();
     this.draw();
+  }
+
+  bindVideo() {
+    $(document).on('click', () => {
+      $('.video').fadeOut();
+      $('.main-container').fadeIn();
+      this.start();
+    });
+
+    $(document).on('idle.idleTimer', () => {
+      $('.main-container').fadeOut();
+      $('.video').fadeIn();
+      this.pause();
+    });
+
+    $(document).idleTimer({ timeout: 20000 });
+  }
+
+  start() {
+    createjs.Ticker.setFPS(30);
+  }
+
+  pause() {
+    createjs.Ticker.setFPS(1);
   }
 
   initialize() {
@@ -12,8 +37,8 @@ class App {
   }
 
   initializeApp() {
+    this.pause();
     createjs.MotionGuidePlugin.install();
-    createjs.Ticker.setFPS(30);
     createjs.Ticker.addEventListener('tick', () => this.update());
     $(window).on('resize', () => this.resize());
   }

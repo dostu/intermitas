@@ -10,6 +10,12 @@
   <title>INTERMITAS</title>
 </head>
 <body class="main-page">
+  <div class="video">
+    <video autoplay loop muted id="bgvid">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <div class="main-container">
     <img src="images/logo.png" class="logo">
     <canvas id="canvas"></canvas>
@@ -52,6 +58,7 @@
   <script src="js/Graph.js"></script>
   <script src="js/Content.js"></script>
   <script src="js/App.js"></script>
+  <script src="vendor/idle-timer.js"></script>
   <script src="data/paths.js"></script>
   <script src="data/nodes.js"></script>
   <script src="js/Node.js"></script>

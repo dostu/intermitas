@@ -98,7 +98,7 @@ var Node = (function () {
   }, {
     key: 'activeColor',
     value: function activeColor() {
-      if (this.path.opened) {
+      if (this.path.opened || this.general) {
         return App.colors.yellow;
       } else {
         return App.colors.white;
@@ -146,7 +146,7 @@ var Node = (function () {
         convertedPoints.push(xc, yc, nextPoint[0], nextPoint[1]);
       }
 
-      createjs.Tween.get(this.container, { loop: true, useTicks: true }).to({ guide: { path: convertedPoints } }, 5000);
+      createjs.Tween.get(this.container, { loop: true, useTicks: true }).to({ guide: { path: convertedPoints } }, 4000);
     }
   }, {
     key: 'activity',

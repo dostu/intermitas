@@ -47,6 +47,10 @@ h2 {
   text-transform: uppercase;
 }
 
+h2 strong {
+  color: #ffdd15;
+}
+
 .open-page .popup {
   display: none !important; 
 }
@@ -97,7 +101,7 @@ h2 {
 
 .container { 
   z-index: 9999;
-  min-width: 750px;
+  min-width: 745px;
   width: 70%;
   position: absolute;
   top: 0;
@@ -154,14 +158,14 @@ h2 {
   opacity: 1 !important;;
 }
 
-.mask {
+.jspScrollable + .mask {
   position: absolute;
   height: 30px;
   bottom: 0;
   left: 73px;
   right: 0;
   box-shadow: inset 0px -26px 30px -17px rgba(0,0,0,0.67);
-  pointer-events: none;
+  pointvents: none;
 }
 
 .active-node {
@@ -269,7 +273,7 @@ h2 {
 .tabs {
   display: inline-block;
   position: absolute;
-  right: 30px;
+  right: 25px;
   bottom: 0;
 }
 
@@ -281,9 +285,6 @@ h2 {
 
 .tabs .tab:nth-of-type(odd) .tab-text {
   background-color: #ffdd15;
-}
-
-.tabs .tab:nth-of-type(odd) .tab-text {
   color: #000;
 }
 
@@ -362,4 +363,36 @@ h2 {
 
 .preloaded-pages {
   display: none;
+}
+
+.jspVerticalBar {
+  left: 7px;
+  width: 2px;
+}
+
+.jspTrack {
+  background: #000;
+}
+
+.jspDrag {
+  width: 10px;
+  height: 10px !important;
+  left: -5px;
+  border-radius: 5px;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.tab-rectangle { 
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #555;
+}
+
+.tab-rectangle:nth-of-type(even) {
+  right: 25px;
+  background-color: #ffdd15;
 }

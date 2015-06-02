@@ -1,6 +1,5 @@
 App.dates = {
   '2015-04-19': {
-    date: '2015 balandzio 19',
     activity: {
       101: { activity: 0 },
       103: { activity: 1 },
@@ -9,10 +8,13 @@ App.dates = {
       106: { activity: 1, count: 139 },
       113: { activity: 0 },
     },
-    tabs: []
+    tabs: [
+      { title: 'komentarai facebook', content: 'Šiuo metu kyla komentarų skaičius facebook.com' },
+      { title: 'komentarai lrytas.lt', content: 'Šiuo metu kyla komentarų skaičius lrytas.lt' },
+      { title: 'mitas-straipsnis', content: 'Šiuo metu kyla susidomėjimas straipsniu' },
+    ]
   },
   '2015-04-30': {
-    date: '2015 balandžio 30',
     activity: {
       101: { activity: 0 },
       103: { activity: 1 },
@@ -87,7 +89,10 @@ App.dates = {
 
       402: { activity: 0 },
     },
-    tabs: []
+    tabs: [
+      { title: 'straipsnis', content: 'Šiuo metu kyla susidomėjimas straipsniu' },
+      { title: 'komentarai lrytas.lt', content: 'Šiuo metu kyla komentarų skaičius lrytas.lt' }
+    ]
   },
   'today': {
     activity: {
@@ -133,12 +138,7 @@ App.dates = {
 
       402: { activity: 0 },
     },
-    tabs: [
-      { title: 'pasidalinimai', content: 'Šiuo metu kyla pasidalinimų skaičius facebook.com' },
-      { title: 'komentarai facebook', content: 'Šiuo metu kyla komentarų skaičius facebook.com' },
-      { title: 'susidomėjimas preke', content: 'Šiuo metu kyla susidomėjimas preke skelbiu.lt' },
-      { title: 'komentarai lrytas.lt', content: 'Šiuo metu kyla komentarų skaičius lrytas.lt' }
-    ]
+    tabs: []
   },
 };
 
@@ -179,7 +179,7 @@ App.nodes = {
   309: { title: 'straipsnis', size: 3 },
   310: { title: 'komentarai portale lrytas.lt', size: 2 },
   311: { title: 'komentarai facebook', size: 2 },
-  312: { title: 'facebook: pasidalinimai ir like\'ai', size: 2 },
+  312: { title: 'pasidalinimai ir like\'ai', size: 2 },
   314: { title: 'susidomėjimas preke', size: 3 },
 
   402: { title: 'projekto problematika', size: 2 },

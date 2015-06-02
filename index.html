@@ -1,12 +1,11 @@
 <html>
 <head>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700' rel='stylesheet' type='text/css'>
-  <link href='vendor/custom_scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet' type='text/css'>
+  <link href='vendor/jscrollpane/jquery.jscrollpane.css' rel='stylesheet' type='text/css'>
   <link href='reset.css' rel='stylesheet' type='text/css'>
   <link href='style.css' rel='stylesheet' type='text/css'>
   <meta charset="utf-8" />
-  <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"> <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="format-detection" content="telephone=no">
   <title>INTERMITAS</title>
 </head>
@@ -31,7 +30,10 @@
         <a href="#" class="date"></a>
       </div>
 
-      <div class="tabs"> </div>
+      <div class="tabs">
+        <div class="tab-rectangle"></div>
+        <div class="tab-rectangle"></div>
+      </div>
     </div>
 
 
@@ -41,7 +43,8 @@
   <script src="vendor/createjs/createjs-2014.12.12.min.js"></script>
   <script src="vendor/curve_calc.js"></script>
   <script src="vendor/lodash.js"></script>
-  <script src="vendor/custom_scrollbar/jquery.mCustomScrollbar.js"></script>
+  <script src="vendor/custom_scrollbar/jquery.mousewheel.js"></script>
+  <script src="vendor/jscrollpane/jquery.jscrollpane.min.js"></script>
 
   <script src="js/Background.js"></script>
   <script src="js/Tab.js"></script>
@@ -69,7 +72,12 @@
     <div class="page-count">{{count}}</div>
     {{/count}}
 
-    <h2 class="page-title">{{title}}</h2>
+    <h2 class="page-title">
+      {{#path_id}}
+        <strong>Mitas {{path_id}}:</strong>
+      {{/path_id}}
+      {{title}}
+    </h2>
 
     <div class="content"></div>
 

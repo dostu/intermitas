@@ -5,13 +5,13 @@ class DatePicker {
     this.bindDateClick();
     this.bindClick();
     this.bindDateSelect();
-    this.changeDate('2015-04-30');
+    this.changeDate('today');
     this.showTooltip();
   }
 
   initializeDates() {
     let dates = [
-      ['2015-04-17', '2015 balandžio 17 d.'],
+      ['2015-04-19', '2015 balandžio 19 d.'],
       ['2015-04-30', '2015 balandžio 30 d.'],
       ['2015-05-27', '2015 gegužės 27 d.'],
     ];

@@ -147,7 +147,7 @@ var App = (function () {
   }, {
     key: 'changeTabs',
     value: function changeTabs() {
-      $('.tabs').empty();
+      $('.tabs .tab').remove();
       App.date.tabs.forEach(function (tab) {
         return new Tab(tab);
       });

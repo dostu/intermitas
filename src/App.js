@@ -110,7 +110,7 @@ class App {
   }
 
   changeTabs() {
-    $('.tabs').empty();
+    $('.tabs .tab').remove();
     App.date.tabs.forEach((tab) => new Tab(tab));
   }
 }

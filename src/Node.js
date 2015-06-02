@@ -76,7 +76,7 @@ class Node {
   }
 
   activeColor() {
-    if (this.path.opened) {
+    if (this.path.opened || this.general) {
       return App.colors.yellow;
     } else {
       return App.colors.white;
@@ -124,7 +124,7 @@ class Node {
 
     
     createjs.Tween.get(this.container, { loop: true, useTicks: true })
-      .to({ guide: { path: convertedPoints } }, 5000);
+      .to({ guide: { path: convertedPoints } }, 4000);
   }
 
   activity() {

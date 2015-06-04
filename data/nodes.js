@@ -134,7 +134,9 @@ App.dates = {
       310: { activity: 0, count: 84 },
       311: { activity: 0, count: 49 },
       312: { activity: 0, count: 113 },
+      313: { activity: 0 },
       314: { activity: 0 },
+      315: { activity: 0 },
 
       402: { activity: 0 },
     },
@@ -170,6 +172,8 @@ App.nodes = {
   212: { title: 'statistika', size: 1 },
   213: { title: 'išvados', size: 3 },
 
+  301: { title: 'analizė', size: 1 },
+  302: { title: 'analizė', size: 1 },
   303: { title: 'analizė', size: 1 },
   304: { title: 'problema', size: 1 },
   305: { title: 'istorija', size: 2 },
@@ -180,7 +184,9 @@ App.nodes = {
   310: { title: 'komentarai portale lrytas.lt', size: 2 },
   311: { title: 'komentarai facebook', size: 2 },
   312: { title: 'pasidalinimai ir like\'ai', size: 2 },
-  314: { title: 'susidomėjimas preke', size: 3 },
+  313: { title: 'statistika', size: 2 },
+  314: { title: 'susidomėjimas preke', size: 2 },
+  315: { title: 'išvados', size: 1 },
 
   402: { title: 'projekto problematika', size: 2 },
 };

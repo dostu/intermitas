@@ -87,6 +87,7 @@ App.dates = {
       312: { activity: 0, count: 113 },
       313: { activity: 0 },
       314: { activity: 0, count: '93,2%' },
+      315: { activity: 0 },
 
       402: { activity: 0 },
     },

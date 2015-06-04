@@ -8,45 +8,12 @@ var App = (function () {
   function App() {
     _classCallCheck(this, App);
 
-    this.bindVideo();
     this.initialize();
     this.resize();
     this.draw();
   }
 
   _createClass(App, [{
-    key: 'bindVideo',
-    value: function bindVideo() {
-      var _this = this;
-
-      $(document).on('click', function () {
-        if ($('.video').is(':visible')) {
-          $('.video').fadeOut();
-          $('.main-container').fadeIn();
-          _this.start();
-        }
-      });
-
-      $(document).on('idle.idleTimer', function () {
-        $('.main-container').fadeOut();
-        $('.video').fadeIn();
-        _this.pause();
-      });
-
-      $(document).idleTimer({ timeout: 120000 });
-    }
-  }, {
-    key: 'start',
-    value: function start() {
-      this.datePicker.showTooltip();
-      createjs.Ticker.setFPS(30);
-    }
-  }, {
-    key: 'pause',
-    value: function pause() {
-      createjs.Ticker.setFPS(1);
-    }
-  }, {
     key: 'initialize',
     value: function initialize() {
       this.initializeApp();
@@ -56,25 +23,25 @@ var App = (function () {
   }, {
     key: 'initializeApp',
     value: function initializeApp() {
-      var _this2 = this;
+      var _this = this;
 
-      this.pause();
+      createjs.Ticker.setFPS(30);
       createjs.MotionGuidePlugin.install();
       createjs.Ticker.addEventListener('tick', function () {
-        return _this2.update();
+        return _this.update();
       });
       $(window).on('resize', function () {
-        return _this2.resize();
+        return _this.resize();
       });
     }
   }, {
     key: 'initializeContainer',
     value: function initializeContainer() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.container = new createjs.Stage('canvas');
       this.container.addEventListener('stagemouseup', function (event) {
-        return _this3.handleClick(event);
+        return _this2.handleClick(event);
       }, false);
 
       this.background = new Background();
@@ -87,15 +54,15 @@ var App = (function () {
   }, {
     key: 'initializeWidgets',
     value: function initializeWidgets() {
-      var _this4 = this;
+      var _this3 = this;
 
       document.addEventListener('openPage', function (event) {
-        return _this4.openPage();
+        return _this3.openPage();
       });
       this.content = new Content();
 
       document.addEventListener('change-date', function (event) {
-        return _this4.changeDate(event.detail.date);
+        return _this3.changeDate(event.detail.date);
       });
       this.datePicker = new DatePicker();
     }

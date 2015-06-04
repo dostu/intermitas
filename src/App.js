@@ -1,36 +1,8 @@
 class App {
   constructor() {
-    this.bindVideo();
     this.initialize();
     this.resize();
     this.draw();
-  }
-
-  bindVideo() {
-    $(document).on('click', () => {
-      if ($('.video').is(':visible')) {
-        $('.video').fadeOut();
-        $('.main-container').fadeIn();
-        this.start();
-      }
-    });
-
-    $(document).on('idle.idleTimer', () => {
-      $('.main-container').fadeOut();
-      $('.video').fadeIn();
-      this.pause();
-    });
-
-    $(document).idleTimer({ timeout: 120000 });
-  }
-
-  start() {
-    this.datePicker.showTooltip();
-    createjs.Ticker.setFPS(30);
-  }
-
-  pause() {
-    createjs.Ticker.setFPS(1);
   }
 
   initialize() {
@@ -40,7 +12,7 @@ class App {
   }
 
   initializeApp() {
-    this.pause();
+    createjs.Ticker.setFPS(30);
     createjs.MotionGuidePlugin.install();
     createjs.Ticker.addEventListener('tick', () => this.update());
     $(window).on('resize', () => this.resize());

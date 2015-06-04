@@ -31,7 +31,7 @@ var App = (function () {
         _this.pause();
       });
 
-      $(document).idleTimer({ timeout: 20000 });
+      $(document).idleTimer({ timeout: 120000 });
     }
   }, {
     key: 'start',

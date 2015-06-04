@@ -20,9 +20,11 @@ var App = (function () {
       var _this = this;
 
       $(document).on('click', function () {
-        $('.video').fadeOut();
-        $('.main-container').fadeIn();
-        _this.start();
+        if ($('.video').is(':visible')) {
+          $('.video').fadeOut();
+          $('.main-container').fadeIn();
+          _this.start();
+        }
       });
 
       $(document).on('idle.idleTimer', function () {
@@ -36,6 +38,7 @@ var App = (function () {
   }, {
     key: 'start',
     value: function start() {
+      this.datePicker.showTooltip();
       createjs.Ticker.setFPS(30);
     }
   }, {

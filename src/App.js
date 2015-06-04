@@ -8,9 +8,11 @@ class App {
 
   bindVideo() {
     $(document).on('click', () => {
-      $('.video').fadeOut();
-      $('.main-container').fadeIn();
-      this.start();
+      if ($('.video').is(':visible')) {
+        $('.video').fadeOut();
+        $('.main-container').fadeIn();
+        this.start();
+      }
     });
 
     $(document).on('idle.idleTimer', () => {
@@ -23,6 +25,7 @@ class App {
   }
 
   start() {
+    this.datePicker.showTooltip();
     createjs.Ticker.setFPS(30);
   }
 

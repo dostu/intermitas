@@ -7,6 +7,8 @@ App.dates = {
       105: { activity: 2, count: 57 },
       106: { activity: 1, count: 139 },
       113: { activity: 0 },
+
+      402: { activity: 0 },
     },
     tabs: [
       { title: 'komentarai facebook', content: 'Šiuo metu kyla komentarų skaičius facebook.com' },
@@ -29,7 +31,6 @@ App.dates = {
       112: { activity: 0 },
       113: { activity: 0 },
 
-      302: { activity: 0 },
       303: { activity: 0 },
       304: { activity: 0 },
       305: { activity: 0 },
@@ -66,7 +67,6 @@ App.dates = {
       112: { activity: 0 },
       113: { activity: 0 },
 
-      201: { activity: 0 },
       202: { activity: 0 },
       203: { activity: 0 },
       204: { activity: 0 },
@@ -74,7 +74,6 @@ App.dates = {
       206: { activity: 0 },
       208: { activity: 2, count: 3 },
 
-      302: { activity: 0 },
       303: { activity: 0 },
       304: { activity: 0 },
       305: { activity: 0 },
@@ -111,7 +110,6 @@ App.dates = {
       112: { activity: 2 },
       113: { activity: 0 },
 
-      201: { activity: 0 },
       202: { activity: 0 },
       203: { activity: 0 },
       204: { activity: 0 },
@@ -125,7 +123,6 @@ App.dates = {
       212: { activity: 0 },
       213: { activity: 0 },
 
-      302: { activity: 0 },
       303: { activity: 0 },
       304: { activity: 0 },
       305: { activity: 0 },
@@ -160,7 +157,6 @@ App.nodes = {
   112: { title: 'projekto rezultatai', size: 3, general: true },
   113: { title: 'problema', size: 1 },
 
-  201: { title: 'analizė', size: 2 },
   202: { title: 'problema', size: 1 },
   203: { title: 'analizė', size: 2 },
   204: { title: 'komentarai straipsniuose', size: 2 },
@@ -174,6 +170,7 @@ App.nodes = {
   212: { title: 'statistika', size: 1 },
   213: { title: 'išvados', size: 3 },
 
+  
   303: { title: 'analizė', size: 1 },
   304: { title: 'problema', size: 1 },
   305: { title: 'istorija', size: 2 },
@@ -188,7 +185,7 @@ App.nodes = {
   314: { title: 'susidomėjimas preke', size: 2 },
   315: { title: 'išvados', size: 1 },
 
-  402: { title: 'projekto problematika', size: 2 },
+  402: { title: 'projekto problematika', size: 2, general: true },
 };
 
 App.backgroundSizes = {

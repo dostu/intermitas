@@ -1,8 +1,15 @@
 var Content = function() {
   var that = this;
   document.addEventListener('openPage', function(event) {
-    var node = event.detail.node;
-    that.open(node.id, node.title, node.count(), node.path.id);
+    let node = event.detail.node;
+    let path_id = node.path.id;
+    if (node.general) path_id = undefined;
+    if (path_id == 2) {
+      path_id = 3;
+    } else if (path_id == 3){
+      path_id = 2;
+    }
+    that.open(node.id, node.title, node.count(), path_id);
   });
 }
 
